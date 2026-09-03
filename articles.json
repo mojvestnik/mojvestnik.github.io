@@ -1,17 +1,6 @@
 {
   "articles": [
     {
-      "id": 1788476469698,
-      "title": "Nova Revija",
-      "category": "Kultura",
-      "author": "Simat",
-      "excerpt": "za izboraževanje",
-      "content": "Radovedni",
-      "image": "https://freshcomics.s3.amazonaws.com/issue_covers/NOV170429.jpg",
-      "date": "2026-09-03T23:01:09.698Z",
-      "updated": "2026-09-03T23:01:09.698Z"
-    },
-    {
       "id": 1788475778918,
       "title": "Vuelta 2026",
       "category": "Šport",
