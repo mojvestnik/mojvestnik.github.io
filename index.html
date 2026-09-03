@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moj Vestnik — Sodobni Časopis</title>
+<title>Vestnik — Sodobni Časopis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -474,30 +474,32 @@
   }
   .rubrika-item-actions { display: flex; gap: 6px; }
 
-  /* ─── ARTICLE READER ────────────────────────────────────── */
-  .reader-overlay {
-    position: fixed; inset: 0; z-index: 400;
+  /* ─── ARTICLE READER (inline, header stays visible) ────── */
+  .reader-section {
+    display: none;
     background: var(--offwhite);
-    overflow-y: auto;
-    opacity: 0; pointer-events: none;
-    transform: translateY(20px);
-    transition: opacity .22s ease, transform .22s ease;
+    min-height: 60vh;
+    animation: fadeIn .22s ease;
   }
-  .reader-overlay.open { opacity: 1; pointer-events: all; transform: translateY(0); }
-  .reader-header {
-    background: var(--navy); color: var(--white);
-    padding: 14px 20px;
-    display: flex; align-items: center; gap: 14px;
-    position: sticky; top: 0; z-index: 10;
+  .reader-section.open { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  .reader-breadcrumb {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
   }
-  .reader-back {
-    background: none; color: rgba(255,255,255,.7);
-    font-size: 22px; display: flex; align-items: center; gap: 6px;
-    font-size: 14px;
-    padding: 6px 0;
+  .reader-breadcrumb-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 20px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--gray);
+  }
+  .reader-breadcrumb button {
+    background: none; color: var(--navy); font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; gap: 5px;
+    padding: 2px 0;
     transition: color var(--transition);
   }
-  .reader-back:hover { color: var(--yellow); }
+  .reader-breadcrumb button:hover { color: var(--yellow); }
   .reader-content {
     max-width: 720px; margin: 0 auto; padding: 40px 20px 80px;
   }
@@ -531,6 +533,10 @@
     display: flex; gap: 10px; margin-top: 32px; padding-top: 20px;
     border-top: 1px solid var(--border);
   }
+  /* Hide hero+grid when reader open */
+  .reader-open #heroSection,
+  .reader-open .content-wrapper { display: none; }
+  .reader-open .reader-section { display: block; }
 
   /* ─── TOAST ─────────────────────────────────────────────── */
   .toast-container {
@@ -638,7 +644,7 @@
 
 <!-- ADMIN MODE BANNER -->
 <div class="admin-mode-banner" id="adminBanner">
-  ✦ Uredniški način — ste prijavljeni kot administrator
+  ✦ Urednički način — ste prijavljeni kot administrator
 </div>
 
 <!-- TOPBAR -->
@@ -650,7 +656,7 @@
       <span>Slovenija</span>
     </div>
     <div class="topbar-actions">
-      <button id="btnAdminToggle">Uredniški dostop</button>
+      <button id="btnAdminToggle">Urednički dostop</button>
       <button id="btnSettings" style="display:none">Nastavitve</button>
     </div>
   </div>
@@ -660,7 +666,7 @@
 <header class="site-header">
   <div class="header-brand">
     <div>
-      <div class="brand-name">Moj Vestnik<span>.</span></div>
+      <div class="brand-name">Vestnik<span>.</span></div>
       <div class="brand-tagline">Sodobni digitalni časopis</div>
     </div>
     <div class="header-right">
@@ -700,11 +706,24 @@
     </div>
     <aside class="sidebar" id="sidebar"></aside>
   </div>
+
+<!-- ARTICLE READER (inline, below sticky header) -->
+<section class="reader-section" id="readerSection">
+  <div class="reader-breadcrumb">
+    <div class="reader-breadcrumb-inner">
+      <button onclick="closeReader()">← Nazaj na naslovnico</button>
+      <span>›</span>
+      <span id="readerCrumbCat" style="color:var(--navy);font-weight:500"></span>
+    </div>
+  </div>
+  <div class="reader-content" id="readerContent"></div>
+</section>
+
 </main>
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <strong>Moj Vestnik</strong> · Sodobni digitalni časopis · &copy; <span id="footerYear"></span>
+  <strong>Vestnik</strong> · Sodobni digitalni časopis · &copy; <span id="footerYear"></span>
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -751,7 +770,6 @@
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal('editorModal')">Prekliči</button>
       <button class="btn btn-primary" id="btnSaveArticle" onclick="saveArticle()">
-        <span class="spinner" id="saveSpinner"></span>
         Objavi članek
       </button>
     </div>
@@ -824,18 +842,6 @@
   </div>
 </div>
 
-<!-- ARTICLE READER OVERLAY -->
-<div class="reader-overlay" id="readerOverlay">
-  <div class="reader-header">
-    <button class="reader-back" onclick="closeReader()">
-      ← Nazaj
-    </button>
-    <div style="flex:1"></div>
-    <div id="readerAdminActions"></div>
-  </div>
-  <div class="reader-content" id="readerContent"></div>
-</div>
-
 <!-- CONFIRM DELETE MODAL -->
 <div class="modal-overlay" id="confirmModal">
   <div class="modal" style="max-width:420px">
@@ -887,8 +893,8 @@ let STATE = {
   settings: {
     ghToken: '', ghOwner: '', ghRepo: '', ghBranch: 'main',
     ghFilePath: 'articles.json',
-    siteName: 'Moj Vestnik', siteTagline: 'Sodobni digitalni časopis',
-    adminPass: '123'
+    siteName: 'Vestnik', siteTagline: 'Sodobni digitalni časopis',
+    adminPass: 'urednik2024'
   },
   isAdmin: false,
   currentCategory: 'vse',
@@ -1217,31 +1223,36 @@ function openReader(id) {
   STATE.currentReader = article;
 
   const content = document.getElementById('readerContent');
+  const adminBtns = STATE.isAdmin ? `<div class="reader-admin">
+    <button class="btn btn-outline" onclick="openArticleEditor(${article.id})">&#x270E; Uredi \u010dlanek</button>
+    <button class="btn btn-danger" onclick="confirmDelete(${article.id})">&#x2715; Izbri\u0161i</button>
+  </div>` : '';
+
   content.innerHTML = `
     <div class="reader-category">${esc(article.category)}</div>
     <h1 class="reader-title">${esc(article.title)}</h1>
     <div class="reader-meta">
-      <span>${esc(article.author || 'Uredništvo')}</span>
-      <span>·</span>
+      <span>${esc(article.author || 'Uredni\u0161tvo')}</span>
+      <span>\u00b7</span>
       <span>${formatDate(article.date)}</span>
-      <span>·</span>
+      <span>\u00b7</span>
       <span>${readTime(article.content)} min branja</span>
     </div>
-    ${article.image ? `<img class="reader-image" src="${esc(article.image)}" alt="${esc(article.title)}">` : ''}
+    ${article.image ? `<img class="reader-image" src="${esc(article.image)}" alt="${esc(article.title)}" loading="lazy">` : ''}
     <div class="reader-body">${formatContent(article.content || '')}</div>
-    ${STATE.isAdmin ? `<div class="reader-admin">
-      <button class="btn btn-outline" onclick="closeReader();openArticleEditor(${article.id})">✎ Uredi članek</button>
-      <button class="btn btn-danger" onclick="closeReader();confirmDelete(${article.id})">✕ Izbriši</button>
-    </div>` : ''}
+    ${adminBtns}
   `;
 
-  document.getElementById('readerOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.getElementById('readerCrumbCat').textContent = article.category;
+  document.getElementById('readerSection').classList.add('open');
+  document.querySelector('main').classList.add('reader-open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function closeReader() {
-  document.getElementById('readerOverlay').classList.remove('open');
-  document.body.style.overflow = '';
+  document.getElementById('readerSection').classList.remove('open');
+  document.querySelector('main').classList.remove('reader-open');
+  STATE.currentReader = null;
 }
 
 function formatContent(text) {
@@ -1293,12 +1304,13 @@ async function saveArticle() {
   if (!title) { toast('Vnesite naslov!', 'error'); return; }
   if (!content) { toast('Vnesite vsebino!', 'error'); return; }
 
-  const spinner = document.getElementById('saveSpinner');
   const btn = document.getElementById('btnSaveArticle');
-  spinner.classList.add('active');
-  btn.disabled = true;
-
   const editingId = document.getElementById('editingId').value;
+  const originalText = editingId ? 'Shrani spremembe' : 'Objavi članek';
+
+  btn.disabled = true;
+  btn.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid rgba(10,22,40,.3);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px"></span>Shranjujem…';
+
   const article = {
     id: editingId ? parseInt(editingId) : Date.now(),
     title,
@@ -1308,7 +1320,7 @@ async function saveArticle() {
     content,
     image: document.getElementById('articleImage').value.trim(),
     date: editingId
-      ? STATE.articles.find(a => a.id === parseInt(editingId))?.date || new Date().toISOString()
+      ? (STATE.articles.find(a => a.id === parseInt(editingId))?.date || new Date().toISOString())
       : new Date().toISOString(),
     updated: new Date().toISOString(),
   };
@@ -1316,6 +1328,7 @@ async function saveArticle() {
   if (editingId) {
     const idx = STATE.articles.findIndex(a => a.id === parseInt(editingId));
     if (idx !== -1) STATE.articles[idx] = article;
+    else STATE.articles.unshift(article);
   } else {
     STATE.articles.unshift(article);
   }
@@ -1323,16 +1336,21 @@ async function saveArticle() {
   saveLocalState();
 
   let ghOk = false;
-  try { ghOk = await saveToGitHub(); } catch(e) {}
+  try { ghOk = await saveToGitHub(); } catch(e) { console.error('GH save error:', e); }
 
-  spinner.classList.remove('active');
   btn.disabled = false;
+  btn.innerHTML = originalText;
 
   closeModal('editorModal');
   renderHero();
   renderArticles();
   renderSidebar();
-  toast(ghOk ? 'Članek objavljen na GitHub! ✓' : 'Shranjeno lokalno (GitHub ni konfiguriran)', ghOk ? 'success' : 'error');
+
+  if (ghOk) {
+    toast('Članek uspešno objavljen na GitHub! ✓', 'success');
+  } else {
+    toast('Shranjeno lokalno. Preveri GitHub nastavitve.', 'error');
+  }
 }
 
 /* ──────────────────────────────────────────────────────────
