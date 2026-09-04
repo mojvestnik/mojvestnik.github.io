@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "id": 1788526532976,
+      "title": "Revija Radovedni",
+      "category": "Kultura",
+      "author": "Simat",
+      "excerpt": "Kmalu bo izšla nova revija Radovedni",
+      "content": "Poučna vsebina za zabavno učenje",
+      "image": "https://i.imgur.com/7w5gppy.jpeg",
+      "date": "2026-09-04T12:55:32.976Z",
+      "updated": "2026-09-04T12:55:32.976Z"
+    },
+    {
       "id": 1788475778918,
       "title": "Vuelta 2026",
       "category": "Šport",
@@ -17,10 +28,10 @@
       "category": "Slovenija",
       "author": "Uredništvo",
       "excerpt": "Vestnik je moderna spletna platforma za objavljanje novic in člankov. Upravljate ga vi — brez strežnika, brez mesečnih stroškov, samo GitHub.",
-      "content": "Dobrodošli pri Vestniku!\n\nMoj Vestnik je vaš osebni digitalni časopis, ki teče popolnoma na GitHubu brezplačno. Ne potrebujete strežnika, ne podatkovne baze, ne mesečnih stroškov.\n\nKako deluje?\n\nVsi članki so shranjeni v datoteki articles.json na vašem GitHub repozitoriju. Ko objavite nov članek, JavaScript v ozadju pošlje zahtevo na GitHub API, ki posodobi to datoteko. V roku ene minute so spremembe vidne vsem bralcem na svetu.\n\nKdo lahko objavlja?\n\nVsaka oseba, ki ima GitHub žeton za vaš repozitorij, lahko objavlja, ureja in briše članke. Žeton enostavno delite z zaupanja vrednimi uredniki.\n\nZačnite že danes!\n\nKliknite Urednički dostop, vnesite geslo, odprite Nastavitve in vnesite vaše GitHub podatke. To je vse — vaš časopis je živ!",
+      "content": "Dobrodošli pri Vestniku!\n\n12345 Moj Vestnik je vaš osebni digitalni časopis, ki teče popolnoma na GitHubu brezplačno. Ne potrebujete strežnika, ne podatkovne baze, ne mesečnih stroškov.\n\nKako deluje?\n\nVsi članki so shranjeni v datoteki articles.json na vašem GitHub repozitoriju. Ko objavite nov članek, JavaScript v ozadju pošlje zahtevo na GitHub API, ki posodobi to datoteko. V roku ene minute so spremembe vidne vsem bralcem na svetu.\n\nKdo lahko objavlja?\n\nVsaka oseba, ki ima GitHub žeton za vaš repozitorij, lahko objavlja, ureja in briše članke. Žeton enostavno delite z zaupanja vrednimi uredniki.\n\nZačnite že danes!\n\nKliknite Urednički dostop, vnesite geslo, odprite Nastavitve in vnesite vaše GitHub podatke. To je vse — vaš časopis je živ!",
       "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=80",
       "date": "2024-01-15T08:00:00.000Z",
-      "updated": "2026-09-04T12:42:10.619Z"
+      "updated": "2026-09-04T12:42:58.138Z"
     },
     {
       "id": 2,
