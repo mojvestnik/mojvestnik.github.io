@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moj Vestnik — Sodobni Časopis</title>
+<title>Vestnik — Sodobni Časopis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -644,7 +644,7 @@
 
 <!-- ADMIN MODE BANNER -->
 <div class="admin-mode-banner" id="adminBanner">
-  ✦ Uredniški način — ste prijavljeni kot administrator
+  ✦ Urednički način — ste prijavljeni kot administrator
 </div>
 
 <!-- TOPBAR -->
@@ -656,7 +656,7 @@
       <span>Slovenija</span>
     </div>
     <div class="topbar-actions">
-      <button id="btnAdminToggle">Uredniški dostop</button>
+      <button id="btnAdminToggle">Urednički dostop</button>
       <button id="btnSettings" style="display:none">Nastavitve</button>
     </div>
   </div>
@@ -666,7 +666,7 @@
 <header class="site-header">
   <div class="header-brand">
     <div>
-      <div class="brand-name">Moj Vestnik<span>.</span></div>
+      <div class="brand-name" onclick="closeReader();filterCategory('vse',null)" style="cursor:pointer">Vestnik<span>.</span></div>
       <div class="brand-tagline">Sodobni digitalni časopis</div>
     </div>
     <div class="header-right">
@@ -723,7 +723,7 @@
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <strong>Moj Vestnik</strong> · Sodobni digitalni časopis · &copy; <span id="footerYear"></span>
+  <strong>Vestnik</strong> · Sodobni digitalni časopis · &copy; <span id="footerYear"></span>
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -893,8 +893,8 @@ let STATE = {
   settings: {
     ghToken: '', ghOwner: '', ghRepo: '', ghBranch: 'main',
     ghFilePath: 'articles.json',
-    siteName: 'Moj Vestnik', siteTagline: 'Sodobni digitalni časopis',
-    adminPass: '123'
+    siteName: 'Vestnik', siteTagline: 'Sodobni digitalni časopis',
+    adminPass: 'urednik2024'
   },
   isAdmin: false,
   currentCategory: 'vse',
@@ -949,7 +949,10 @@ function setDate() {
 
 function applyBranding() {
   document.title = STATE.settings.siteName + ' — Sodobni časopis';
-  document.querySelector('.brand-name').innerHTML = STATE.settings.siteName + '<span>.</span>';
+  const bn = document.querySelector('.brand-name');
+  bn.innerHTML = STATE.settings.siteName + '<span>.</span>';
+  bn.style.cursor = 'pointer';
+  bn.onclick = () => { closeReader(); filterCategory('vse', null); };
   document.querySelector('.brand-tagline').textContent = STATE.settings.siteTagline;
 }
 
@@ -971,10 +974,23 @@ function renderNav() {
 }
 
 function filterCategory(cat, el) {
+  // Zapri reader če je odprt
+  if (document.getElementById('readerSection').classList.contains('open')) {
+    document.getElementById('readerSection').classList.remove('open');
+    document.querySelector('main').classList.remove('reader-open');
+    STATE.currentReader = null;
+  }
   STATE.currentCategory = cat;
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  if (el) el.classList.add('active');
+  // Poišči nav item po data-cat če el ni podan
+  if (el) {
+    el.classList.add('active');
+  } else {
+    const found = document.querySelector(`.nav-item[data-cat="${cat}"]`);
+    if (found) found.classList.add('active');
+  }
   document.getElementById('sectionTitle').textContent = cat === 'vse' ? 'Najnovejše' : cat;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   renderArticles();
 }
 
@@ -1253,6 +1269,7 @@ function closeReader() {
   document.getElementById('readerSection').classList.remove('open');
   document.querySelector('main').classList.remove('reader-open');
   STATE.currentReader = null;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function formatContent(text) {
