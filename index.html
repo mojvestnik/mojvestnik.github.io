@@ -982,7 +982,6 @@ function filterCategory(cat, el) {
   }
   STATE.currentCategory = cat;
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  // Poišči nav item po data-cat če el ni podan
   if (el) {
     el.classList.add('active');
   } else {
@@ -990,6 +989,13 @@ function filterCategory(cat, el) {
     if (found) found.classList.add('active');
   }
   document.getElementById('sectionTitle').textContent = cat === 'vse' ? 'Najnovejše' : cat;
+  // Pokaži hero samo pri "vse novice"
+  const hero = document.getElementById('heroSection');
+  if (cat === 'vse') {
+    hero.style.display = '';
+  } else {
+    hero.style.display = 'none';
+  }
   window.scrollTo({ top: 0, behavior: 'smooth' });
   renderArticles();
 }
@@ -1527,13 +1533,10 @@ function setupSearch() {
 ────────────────────────────────────────────────────────── */
 function openModal(id) {
   document.getElementById(id).classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // NE zaklepamo body overflow — scroll mora vedno delovati
 }
 function closeModal(id) {
   document.getElementById(id).classList.remove('open');
-  // Restore scroll only if no other modal is open
-  if (!document.querySelector('.modal-overlay.open, .reader-overlay.open'))
-    document.body.style.overflow = '';
 }
 
 /* ──────────────────────────────────────────────────────────
