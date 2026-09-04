@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vestnik — Sodobni Časopis</title>
+<title>Moj Vestnik — Sodobni Časopis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -644,7 +644,7 @@
 
 <!-- ADMIN MODE BANNER -->
 <div class="admin-mode-banner" id="adminBanner">
-  ✦ Urednički način — ste prijavljeni kot administrator
+  ✦ Uredniški način — ste prijavljeni kot administrator
 </div>
 
 <!-- TOPBAR -->
@@ -656,7 +656,7 @@
       <span>Slovenija</span>
     </div>
     <div class="topbar-actions">
-      <button id="btnAdminToggle">Urednički dostop</button>
+      <button id="btnAdminToggle">Uredniški dostop</button>
       <button id="btnSettings" style="display:none">Nastavitve</button>
     </div>
   </div>
@@ -723,7 +723,7 @@
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <strong>Vestnik</strong> · Sodobni digitalni časopis · &copy; <span id="footerYear"></span>
+  <strong>Moj Vestnik</strong> · Sodobni digitalni časopis · &copy; <span id="footerYear"></span>
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -863,7 +863,7 @@
 <div class="modal-overlay" id="loginModal">
   <div class="modal" style="max-width:380px">
     <div class="modal-header">
-      <h3>Urednički dostop</h3>
+      <h3>Uredniški dostop</h3>
       <button class="modal-close" onclick="closeModal('loginModal')">×</button>
     </div>
     <div class="modal-body">
@@ -893,8 +893,8 @@ let STATE = {
   settings: {
     ghToken: '', ghOwner: '', ghRepo: '', ghBranch: 'main',
     ghFilePath: 'articles.json',
-    siteName: 'Vestnik', siteTagline: 'Sodobni digitalni časopis',
-    adminPass: 'urednik2024'
+    siteName: 'Moj Vestnik', siteTagline: 'Sodobni digitalni časopis',
+    adminPass: '123'
   },
   isAdmin: false,
   currentCategory: 'vse',
