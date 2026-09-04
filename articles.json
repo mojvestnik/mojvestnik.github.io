@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "id": 1788526677815,
+      "title": "Nove metode v sodobnem poslovanju",
+      "category": "Slovenija",
+      "author": "Uredništvo",
+      "excerpt": "Uporaba novih metod v poslovanju",
+      "content": "Novi pristopi pri poslovanju",
+      "image": "https://i.imgur.com/lTpIVHo.jpeg",
+      "date": "2026-09-04T12:57:57.815Z",
+      "updated": "2026-09-04T12:57:57.815Z"
+    },
+    {
       "id": 1788526532976,
       "title": "Revija Radovedni",
       "category": "Kultura",
