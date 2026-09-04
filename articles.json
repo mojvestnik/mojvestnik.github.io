@@ -78,17 +78,6 @@
       "updated": "2026-09-04T12:42:58.138Z"
     },
     {
-      "id": 2,
-      "title": "Kako upravljati z rubrikami in uredniško sobo",
-      "category": "Tehnologija",
-      "author": "Uredništvo",
-      "excerpt": "Naučite se dodajati nove rubrike, urejati obstoječe članke in upravljati z dostopi urednikov v vaši digitalni redakciji.",
-      "content": "Uredniška soba vam daje popoln nadzor.\n\nDodajanje rubrik\n\nV nastavitvah (ikona zobnika) lahko kadarkoli dodate ali odstranite rubrike. Rubrike se takoj pojavijo v navigaciji in pri pisanju novih člankov.\n\nUrejanje člankov\n\nVsak objavljeni članek lahko uredite s klikom na gumb Uredi. Spremembe se shranijo direktno na GitHub.\n\nUpravičenje dostopa\n\nČe želite, da nekdo drug objavlja članke, mu posredujte GitHub Personal Access Token z dovoljenjem za vaš repozitorij. Token vnesite v nastavitvah pod GitHub integracija.\n\nVarinostni nasveti\n\nGeslo za urednički dostop spremenite v nastavitvah. Ustvarite ločen token za vsakega urednika — tako lahko posamezen dostop kadarkoli prekličete na GitHubu brez vpliva na ostale.",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
-      "date": "2024-01-14T10:30:00.000Z",
-      "updated": "2024-01-14T10:30:00.000Z"
-    },
-    {
       "id": 3,
       "title": "GitHub Pages — brezplačni strežnik za vaš časopis",
       "category": "Tehnologija",
