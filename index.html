@@ -1151,6 +1151,15 @@ function renderArticles() {
   const q = document.getElementById('searchInput').value.toLowerCase();
   let articles = [...STATE.articles].sort((a,b) => new Date(b.date)-new Date(a.date));
 
+// Glavni članek je že prikazan v HERO delu,
+// zato ga na seznamu "Najnovejše" ne prikažemo še enkrat.
+// Pri iskanju pa se lahko še vedno prikaže.
+const featured = articles[0];
+
+if (STATE.currentCategory === 'vse' && !q && featured) {
+  articles = articles.filter(a => a.id !== featured.id);
+}
+
   if (STATE.currentCategory !== 'vse')
     articles = articles.filter(a => a.category === STATE.currentCategory);
   if (q)
