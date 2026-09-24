@@ -6,38 +6,29 @@
 <title>Moj Vestnik — Sodobni Časopis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
+  /* ─── RESET & BASE ─────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --navy: #0A1628;
-    --navy2: #132040;
-    --yellow: #FFD100;
-    --white: #FFFFFF;
-    --offwhite: #F5F6F8;
-    --gray: #8A94A6;
-    --dark: #1E2535;
-    --text: #2D3748;
-    --border: #E2E8F0;
-    --red: #E53E3E;
-    --green: #38A169;
-    --shadow: 0 2px 12px rgba(10,22,40,.08);
+    --navy:    #0A1628;
+    --navy2:   #132040;
+    --yellow:  #FFD100;
+    --white:   #FFFFFF;
+    --offwhite:#F5F6F8;
+    --gray:    #8A94A6;
+    --dark:    #1E2535;
+    --text:    #2D3748;
+    --border:  #E2E8F0;
+    --red:     #E53E3E;
+    --green:   #38A169;
+    --shadow:  0 2px 12px rgba(10,22,40,.08);
     --shadow-lg: 0 8px 32px rgba(10,22,40,.14);
-    --radius: 6px;
+    --radius:  6px;
     --font-serif: 'Playfair Display', Georgia, serif;
-    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-sans:  'Inter', system-ui, sans-serif;
     --transition: .18s ease;
   }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
+  html { scroll-behavior: smooth; }
   body {
     font-family: var(--font-sans);
     color: var(--text);
@@ -45,31 +36,12 @@
     font-size: 16px;
     line-height: 1.6;
   }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: var(--font-sans); cursor: pointer; border: none; }
 
-  img {
-    max-width: 100%;
-    display: block;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  button {
-    font-family: var(--font-sans);
-    cursor: pointer;
-    border: none;
-  }
-
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-  }
-
+  /* ─── UTILITY ──────────────────────────────────────────── */
+  .visually-hidden { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
   .badge {
     display: inline-block;
     font-size: 11px;
@@ -80,137 +52,58 @@
     background: var(--yellow);
     color: var(--navy);
   }
-
-  .badge.white {
-    background: rgba(255,255,255,.15);
-    color: #fff;
-  }
-
+  .badge.white { background: rgba(255,255,255,.15); color: #fff; }
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 20px;
-    border-radius: var(--radius);
-    font-size: 14px;
-    font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 20px; border-radius: var(--radius);
+    font-size: 14px; font-weight: 500;
     transition: opacity var(--transition), transform var(--transition);
   }
+  .btn:active { transform: scale(.97); }
+  .btn-primary { background: var(--yellow); color: var(--navy); }
+  .btn-primary:hover { opacity: .88; }
+  .btn-secondary { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.35); }
+  .btn-secondary:hover { background: rgba(255,255,255,.1); }
+  .btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--border); }
+  .btn-outline:hover { border-color: var(--navy); }
+  .btn-danger { background: var(--red); color: #fff; }
+  .btn-danger:hover { opacity: .85; }
+  .btn-sm { padding: 6px 14px; font-size: 13px; }
 
-  .btn:active {
-    transform: scale(.97);
-  }
-
-  .btn-primary {
-    background: var(--yellow);
-    color: var(--navy);
-  }
-
-  .btn-primary:hover {
-    opacity: .88;
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--white);
-    border: 1.5px solid rgba(255,255,255,.35);
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255,255,255,.1);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--navy);
-    border: 1.5px solid var(--border);
-  }
-
-  .btn-outline:hover {
-    border-color: var(--navy);
-  }
-
-  .btn-danger {
-    background: var(--red);
-    color: #fff;
-  }
-
-  .btn-danger:hover {
-    opacity: .85;
-  }
-
-  .btn-sm {
-    padding: 6px 14px;
-    font-size: 13px;
-  }
-
-  /* TOPBAR */
-
+  /* ─── TOPBAR ───────────────────────────────────────────── */
   .topbar {
     background: var(--navy);
     color: rgba(255,255,255,.6);
     font-size: 12px;
     padding: 6px 0;
-    display: flex;
-    align-items: center;
+    display: flex; align-items: center;
   }
-
   .topbar-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    max-width: 1280px; margin: 0 auto; padding: 0 20px;
+    display: flex; justify-content: space-between; align-items: center;
     width: 100%;
   }
-
-  .topbar-date {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .topbar-actions {
-    display: flex;
-    gap: 16px;
-  }
-
+  .topbar-date { display: flex; align-items: center; gap: 8px; }
+  .topbar-actions { display: flex; gap: 16px; }
   .topbar-actions button {
-    background: none;
-    color: rgba(255,255,255,.7);
-    font-size: 12px;
-    padding: 2px 0;
-    border-bottom: 1px solid transparent;
+    background: none; color: rgba(255,255,255,.7); font-size: 12px;
+    padding: 2px 0; border-bottom: 1px solid transparent;
     transition: color var(--transition), border-color var(--transition);
   }
+  .topbar-actions button:hover { color: var(--yellow); border-color: var(--yellow); }
 
-  .topbar-actions button:hover {
-    color: var(--yellow);
-    border-color: var(--yellow);
-  }
-
-  /* HEADER */
-
+  /* ─── HEADER ───────────────────────────────────────────── */
   .site-header {
     background: var(--navy);
     padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
     box-shadow: 0 2px 20px rgba(0,0,0,.25);
   }
-
   .header-brand {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    max-width: 1280px; margin: 0 auto; padding: 0 20px;
+    display: flex; align-items: center; justify-content: space-between;
     height: 68px;
   }
-
   .brand-name {
     font-family: var(--font-serif);
     font-size: 36px;
@@ -218,11 +111,7 @@
     color: var(--white);
     letter-spacing: -.02em;
   }
-
-  .brand-name span {
-    color: var(--yellow);
-  }
-
+  .brand-name span { color: var(--yellow); }
   .brand-tagline {
     font-size: 11px;
     color: rgba(255,255,255,.45);
@@ -230,35 +119,19 @@
     text-transform: uppercase;
     margin-top: 2px;
   }
+  .header-right { display: flex; align-items: center; gap: 12px; }
 
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  /* NAV */
-
+  /* ─── NAV ──────────────────────────────────────────────── */
   .site-nav {
     background: var(--navy2);
     border-top: 1px solid rgba(255,255,255,.06);
   }
-
   .nav-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    overflow-x: auto;
-    scrollbar-width: none;
+    max-width: 1280px; margin: 0 auto; padding: 0 20px;
+    display: flex; align-items: center; gap: 2px;
+    overflow-x: auto; scrollbar-width: none;
   }
-
-  .nav-inner::-webkit-scrollbar {
-    display: none;
-  }
-
+  .nav-inner::-webkit-scrollbar { display: none; }
   .nav-item {
     flex-shrink: 0;
     padding: 12px 14px;
@@ -270,24 +143,13 @@
     transition: color var(--transition), border-color var(--transition);
     white-space: nowrap;
   }
+  .nav-item:hover { color: var(--white); }
+  .nav-item.active { color: var(--yellow); border-bottom-color: var(--yellow); }
 
-  .nav-item:hover {
-    color: var(--white);
-  }
-
-  .nav-item.active {
-    color: var(--yellow);
-    border-bottom-color: var(--yellow);
-  }
-
-  /* HERO */
-
+  /* ─── HERO ─────────────────────────────────────────────── */
   .hero-section {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 28px 20px 0;
+    max-width: 1280px; margin: 0 auto; padding: 28px 20px 0;
   }
-
   .hero-grid {
     display: grid;
     grid-template-columns: 1fr 340px;
@@ -297,7 +159,6 @@
     border-radius: var(--radius);
     overflow: hidden;
   }
-
   .hero-main {
     grid-row: span 2;
     position: relative;
@@ -306,33 +167,18 @@
     cursor: pointer;
     overflow: hidden;
   }
-
   .hero-main img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; height: 100%; object-fit: cover;
     opacity: .75;
     transition: transform .4s ease, opacity .3s;
   }
-
-  .hero-main:hover img {
-    transform: scale(1.03);
-    opacity: .65;
-  }
-
+  .hero-main:hover img { transform: scale(1.03); opacity: .65; }
   .hero-main-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: absolute; bottom: 0; left: 0; right: 0;
     padding: 28px;
     background: linear-gradient(to top, rgba(10,22,40,.96) 40%, transparent);
   }
-
-  .hero-main-content .badge {
-    margin-bottom: 10px;
-  }
-
+  .hero-main-content .badge { margin-bottom: 10px; }
   .hero-main-content h2 {
     font-family: var(--font-serif);
     font-size: clamp(22px, 3vw, 32px);
@@ -341,7 +187,6 @@
     line-height: 1.22;
     margin-bottom: 10px;
   }
-
   .hero-main-content p {
     color: rgba(255,255,255,.7);
     font-size: 14px;
@@ -351,34 +196,19 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-
   .hero-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex; align-items: center; gap: 12px;
     margin-top: 14px;
-    color: rgba(255,255,255,.5);
-    font-size: 12px;
+    color: rgba(255,255,255,.5); font-size: 12px;
   }
-
   .hero-side {
     background: var(--white);
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    cursor: pointer;
-    transition: background var(--transition);
+    display: flex; flex-direction: column; justify-content: center;
+    cursor: pointer; transition: background var(--transition);
   }
-
-  .hero-side:hover {
-    background: var(--offwhite);
-  }
-
-  .hero-side .badge {
-    margin-bottom: 8px;
-  }
-
+  .hero-side:hover { background: var(--offwhite); }
+  .hero-side .badge { margin-bottom: 8px; }
   .hero-side h3 {
     font-family: var(--font-serif);
     font-size: 17px;
@@ -387,4108 +217,1366 @@
     margin-bottom: 8px;
     color: var(--dark);
   }
-
   .hero-side p {
-    font-size: 13px;
-    color: var(--gray);
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 13px; color: var(--gray); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; overflow: hidden;
   }
+  .hero-side-meta { font-size: 11.5px; color: var(--gray); margin-top: 10px; }
 
-  .hero-side-meta {
-    font-size: 11.5px;
-    color: var(--gray);
-    margin-top: 10px;
-  }
-
-  /* CONTENT */
-
+  /* ─── CONTENT AREA ─────────────────────────────────────── */
   .content-wrapper {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 28px 20px 60px;
+    max-width: 1280px; margin: 0 auto; padding: 28px 20px 60px;
     display: grid;
     grid-template-columns: 1fr 300px;
     gap: 32px;
   }
 
+  /* ─── SECTION HEADER ───────────────────────────────────── */
   .section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 20px;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--navy);
   }
-
   .section-header h2 {
     font-family: var(--font-serif);
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 22px; font-weight: 700;
     color: var(--navy);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
   }
-
   .section-header h2::before {
-    content: '';
-    display: block;
-    width: 4px;
-    height: 24px;
+    content: ''; display: block;
+    width: 4px; height: 24px;
     background: var(--yellow);
     border-radius: 2px;
   }
+  .section-header a { font-size: 13px; color: var(--gray); }
+  .section-header a:hover { color: var(--navy); }
 
-  .section-header a {
-    font-size: 13px;
-    color: var(--gray);
-  }
-
-  .section-header a:hover {
-    color: var(--navy);
-  }
-
-  /* ARTICLES */
-
+  /* ─── ARTICLE GRID ─────────────────────────────────────── */
   .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
   }
 
+  /* ─── ARTICLE CARD ─────────────────────────────────────── */
   .article-card {
     background: var(--white);
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: box-shadow var(--transition), transform var(--transition);
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     cursor: pointer;
   }
-
   .article-card:hover {
     box-shadow: var(--shadow-lg);
     transform: translateY(-2px);
   }
-
   .card-image {
     height: 180px;
     background: var(--offwhite);
     overflow: hidden;
     position: relative;
   }
-
   .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; height: 100%; object-fit: cover;
     transition: transform .35s ease;
   }
-
-  .article-card:hover .card-image img {
-    transform: scale(1.05);
-  }
-
+  .article-card:hover .card-image img { transform: scale(1.05); }
   .card-image-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
     color: rgba(255,255,255,.2);
     font-family: var(--font-serif);
     font-size: 48px;
   }
-
-  .card-body {
-    padding: 16px 18px 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
+  .card-body { padding: 16px 18px 20px; flex: 1; display: flex; flex-direction: column; }
   .card-category {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--navy);
-    letter-spacing: .05em;
+    font-size: 11px; font-weight: 600;
+    color: var(--navy); letter-spacing: .05em;
     margin-bottom: 8px;
     text-transform: uppercase;
   }
-
   .card-title {
     font-family: var(--font-serif);
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 18px; font-weight: 700;
     line-height: 1.28;
     color: var(--dark);
     margin-bottom: 10px;
     flex: 1;
   }
-
   .card-excerpt {
-    font-size: 13px;
-    color: var(--gray);
-    line-height: 1.5;
+    font-size: 13.5px; color: var(--gray);
+    line-height: 1.55;
+    display: -webkit-box; -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; overflow: hidden;
     margin-bottom: 14px;
   }
-
-  .card-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: var(--gray);
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
     padding-top: 12px;
     border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--gray);
+  }
+  .card-author { display: flex; align-items: center; gap: 6px; }
+  .card-avatar {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--yellow); font-weight: 700;
+  }
+  .card-admin-actions {
+    display: flex; gap: 6px; margin-top: 12px; padding-top: 12px;
+    border-top: 1px solid var(--border);
   }
 
-  /* SIDEBAR */
-
-  .sidebar-box {
+  /* ─── SIDEBAR ──────────────────────────────────────────── */
+  .sidebar { display: flex; flex-direction: column; gap: 24px; }
+  .sidebar-widget {
     background: var(--white);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
     padding: 20px;
-    margin-bottom: 20px;
+    box-shadow: var(--shadow);
   }
-
-  .sidebar-title {
+  .widget-title {
     font-family: var(--font-serif);
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 17px; font-weight: 700;
     color: var(--navy);
+    margin-bottom: 16px;
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--yellow);
-    margin-bottom: 14px;
+    border-bottom: 1.5px solid var(--border);
   }
-
-  .sidebar-list {
-    list-style: none;
-  }
-
-  .sidebar-list li {
+  .trending-item {
+    display: flex; gap: 12px; align-items: flex-start;
     padding: 10px 0;
     border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: opacity var(--transition);
   }
-
-  .sidebar-list li:last-child {
-    border-bottom: none;
+  .trending-item:last-child { border-bottom: none; }
+  .trending-item:hover { opacity: .75; }
+  .trending-num {
+    font-size: 26px; font-weight: 700; font-family: var(--font-serif);
+    color: var(--border); line-height: 1;
+    min-width: 28px;
   }
-
-  .sidebar-list a {
-    font-family: var(--font-serif);
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.35;
-    color: var(--dark);
+  .trending-text h4 {
+    font-size: 14px; font-weight: 600;
+    line-height: 1.3; color: var(--dark);
+    margin-bottom: 4px;
   }
+  .trending-text span { font-size: 12px; color: var(--gray); }
 
-  .sidebar-list a:hover {
-    color: var(--navy);
-  }
-
-  .sidebar-list-meta {
-    font-size: 10.5px;
-    color: var(--gray);
-    margin-top: 5px;
-  }
-
-  /* ADMIN */
-
-  .admin-banner {
-    display: none;
-    background: var(--yellow);
-    color: var(--navy);
-    padding: 8px 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-align: center;
-  }
-
-  .admin-banner.visible {
-    display: block;
-  }
-
-  .admin-toolbar {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .admin-toolbar-left,
-  .admin-toolbar-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .admin-toolbar .btn {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-
-  /* SEARCH */
-
-  .search-box {
-    position: relative;
-    width: 260px;
-  }
-
-  .search-box input {
-    width: 100%;
-    padding: 8px 12px 8px 34px;
-    border: 1px solid rgba(255,255,255,.2);
-    background: rgba(255,255,255,.08);
-    color: #fff;
-    border-radius: 5px;
-    outline: none;
-    font-size: 13px;
-  }
-
-  .search-box input::placeholder {
-    color: rgba(255,255,255,.45);
-  }
-
-  .search-box input:focus {
-    border-color: var(--yellow);
-  }
-
-  .search-icon {
-    position: absolute;
-    left: 11px;
-    top: 8px;
-    color: rgba(255,255,255,.5);
-    font-size: 14px;
-  }
-
-  /* READER */
-
-  .reader-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 500;
-    background: rgba(10,22,40,.75);
-    overflow-y: auto;
-    padding: 30px 20px;
-  }
-
-  .reader-overlay.open {
-    display: block;
-  }
-
-  .reader {
-    max-width: 900px;
-    margin: 0 auto;
-    background: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 20px 70px rgba(0,0,0,.35);
-    overflow: hidden;
-  }
-
-  .reader-header {
-    position: relative;
-    padding: 44px 55px 35px;
-  }
-
-  .reader-close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--offwhite);
-    color: var(--navy);
-    font-size: 20px;
-    line-height: 1;
-  }
-
-  .reader-close:hover {
-    background: var(--yellow);
-  }
-
-  .reader-category {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: var(--navy);
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .reader-title {
-    font-family: var(--font-serif);
-    font-size: clamp(30px, 5vw, 48px);
-    line-height: 1.12;
-    color: var(--dark);
-    margin-bottom: 15px;
-  }
-
-  .reader-excerpt {
-    font-size: 17px;
-    color: var(--gray);
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-
-  .reader-meta {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    color: var(--gray);
-    font-size: 12px;
-  }
-
-  .reader-hero {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-  }
-
-  .reader-body {
-    padding: 10px 55px 60px;
-    font-family: Georgia, serif;
-    font-size: 18px;
-    line-height: 1.85;
-    color: #303846;
-  }
-
-  .reader-body p {
-    margin-bottom: 20px;
-  }
-
-  .reader-body h2 {
-    font-family: var(--font-serif);
-    font-size: 30px;
-    line-height: 1.25;
-    margin: 35px 0 15px;
-    color: var(--navy);
-  }
-
-  .reader-body h3 {
-    font-family: var(--font-serif);
-    font-size: 24px;
-    line-height: 1.3;
-    margin: 30px 0 12px;
-    color: var(--navy);
-  }
-
-  .reader-body ul,
-  .reader-body ol {
-    margin: 0 0 22px 28px;
-  }
-
-  .reader-body li {
-    margin-bottom: 7px;
-  }
-
-  .reader-body blockquote {
-    border-left: 4px solid var(--yellow);
-    padding: 12px 20px;
-    margin: 25px 0;
-    background: var(--offwhite);
-    font-style: italic;
-  }
-
-  .reader-body figure {
-    margin: 30px 0;
-  }
-
-  .reader-body figure img {
-    width: 100%;
-    max-height: 650px;
-    object-fit: contain;
-    border-radius: 5px;
-    margin: 0 auto;
-  }
-
-  .reader-body figcaption {
-    text-align: center;
-    color: var(--gray);
-    font-family: var(--font-sans);
-    font-size: 12px;
-    line-height: 1.4;
-    margin-top: 8px;
-  }
-
-  .reader-body .video-embed {
-    width: 100%;
-    margin: 30px 0;
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background: #000;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-
-  .reader-body .video-embed iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-  }
-
-  /* ARTICLE EDITOR */
-
-  .editor-toolbar {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 5px;
-    padding: 8px;
-    background: #f0f2f5;
-    border: 1px solid var(--border);
-    border-bottom: none;
-    border-radius: 6px 6px 0 0;
-  }
-
-  .editor-tool {
-    min-width: 34px;
-    height: 32px;
-    padding: 0 9px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #d7dce3;
-    border-radius: 4px;
-    background: #fff;
-    color: var(--navy);
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  .editor-tool:hover {
-    background: var(--yellow);
-    border-color: var(--yellow);
-  }
-
-  .editor-tool.media {
-    font-weight: 500;
-  }
-
-  .article-editor {
-    min-height: 360px;
-    width: 100%;
-    border: 1px solid var(--border);
-    border-radius: 0 0 6px 6px;
-    background: #fff;
-    padding: 18px;
-    outline: none;
-    overflow-y: auto;
-    font-family: Georgia, serif;
-    font-size: 17px;
-    line-height: 1.75;
-  }
-
-  .article-editor:focus {
-    border-color: #aeb8c7;
-    box-shadow: 0 0 0 2px rgba(10,22,40,.04);
-  }
-
-  .article-editor p {
-    margin: 0 0 15px;
-  }
-
-  .article-editor h2 {
-    font-family: var(--font-serif);
-    font-size: 28px;
-    line-height: 1.25;
-    margin: 25px 0 12px;
-    color: var(--navy);
-  }
-
-  .article-editor h3 {
-    font-family: var(--font-serif);
-    font-size: 22px;
-    line-height: 1.3;
-    margin: 20px 0 10px;
-    color: var(--navy);
-  }
-
-  .article-editor ul,
-  .article-editor ol {
-    margin: 0 0 18px 25px;
-  }
-
-  .article-editor blockquote {
-    border-left: 4px solid var(--yellow);
-    padding: 10px 16px;
-    background: var(--offwhite);
-    margin: 18px 0;
-  }
-
-  .article-editor figure {
-    margin: 20px 0;
-  }
-
-  .article-editor figure img {
-    width: 100%;
-    max-height: 600px;
-    object-fit: contain;
-    margin: 0 auto;
-    border-radius: 5px;
-  }
-
-  .article-editor figcaption {
-    color: var(--gray);
-    text-align: center;
-    font-family: var(--font-sans);
-    font-size: 12px;
-    margin-top: 6px;
-  }
-
-  .article-editor .video-embed {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    margin: 22px 0;
-    background: #000;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-
-  .article-editor .video-embed iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .editor-hint {
-    margin-top: 8px;
-    color: var(--gray);
-    font-size: 12px;
-  }
-
-  /* MODALS */
-
+  /* ─── MODAL OVERLAY ────────────────────────────────────── */
   .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    background: rgba(10,22,40,.7);
-    padding: 30px 20px;
-    overflow-y: auto;
-  }
-
-  .modal-overlay.open {
-    display: flex;
-    align-items: flex-start;
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(10,22,40,.65);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: flex-start;
     justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    opacity: 0; pointer-events: none;
+    transition: opacity .2s ease;
   }
-
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
   .modal {
-    width: 100%;
-    max-width: 760px;
-    margin: 30px auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 20px 70px rgba(0,0,0,.3);
-    overflow: hidden;
+    background: var(--white);
+    border-radius: 10px;
+    width: 100%; max-width: 700px;
+    box-shadow: 0 24px 80px rgba(10,22,40,.28);
+    margin: auto;
+    transform: translateY(16px);
+    transition: transform .22s ease;
   }
-
-  .modal.small {
-    max-width: 430px;
-  }
-
+  .modal-overlay.open .modal { transform: translateY(0); }
   .modal-header {
-    padding: 18px 22px;
-    background: var(--navy);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 24px 28px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
   }
-
   .modal-header h3 {
     font-family: var(--font-serif);
-    font-size: 20px;
+    font-size: 22px; font-weight: 700; color: var(--navy);
   }
-
   .modal-close {
-    background: transparent;
-    color: rgba(255,255,255,.7);
-    font-size: 24px;
-    width: 30px;
-    height: 30px;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--offwhite); color: var(--gray);
+    font-size: 20px; display: flex; align-items: center; justify-content: center;
+    transition: background var(--transition);
   }
-
-  .modal-close:hover {
-    color: var(--yellow);
-  }
-
-  .modal-body {
-    padding: 22px;
-  }
-
+  .modal-close:hover { background: var(--border); color: var(--dark); }
+  .modal-body { padding: 24px 28px; }
   .modal-footer {
-    padding: 15px 22px;
+    padding: 18px 28px 24px;
     border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
+    display: flex; justify-content: flex-end; gap: 10px;
   }
 
-  .form-group {
-    margin-bottom: 16px;
-  }
-
+  /* ─── FORM ─────────────────────────────────────────────── */
+  .form-group { margin-bottom: 18px; }
   .form-group label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--dark);
-    margin-bottom: 6px;
+    display: block; font-size: 13px; font-weight: 500;
+    color: var(--dark); margin-bottom: 6px;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%; padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-sans); font-size: 14px;
+    color: var(--text); background: var(--white);
+    transition: border-color var(--transition);
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none; border-color: var(--navy);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-hint { font-size: 12px; color: var(--gray); margin-top: 5px; }
+  .form-section-title {
+    font-size: 12px; font-weight: 600; color: var(--gray);
+    letter-spacing: .06em; text-transform: uppercase;
+    margin: 20px 0 12px;
+    padding-top: 16px; border-top: 1px solid var(--border);
   }
 
-  .form-control {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    font-family: var(--font-sans);
-    font-size: 14px;
-    outline: none;
-    color: var(--text);
-    background: #fff;
+  /* ─── SETTINGS PANEL ────────────────────────────────────── */
+  .settings-section { margin-bottom: 28px; }
+  .settings-section h4 {
+    font-size: 14px; font-weight: 600; color: var(--dark);
+    margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
   }
-
-  .form-control:focus {
-    border-color: var(--navy);
+  .settings-section h4::before {
+    content: ''; width: 3px; height: 16px; background: var(--yellow);
+    border-radius: 2px; display: inline-block;
   }
-
-  textarea.form-control {
-    min-height: 100px;
-    resize: vertical;
+  .token-display {
+    font-family: monospace; font-size: 12px;
+    background: var(--navy); color: var(--yellow);
+    padding: 10px 14px; border-radius: var(--radius);
+    word-break: break-all; margin-bottom: 8px;
   }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .settings-section {
-    margin-bottom: 28px;
-  }
-
-  .settings-section-title {
-    font-family: var(--font-serif);
-    color: var(--navy);
-    font-size: 17px;
-    margin-bottom: 12px;
-    padding-bottom: 7px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .rubrika-list {
-    margin-bottom: 12px;
-  }
-
+  .rubrika-list { display: flex; flex-direction: column; gap: 8px; }
   .rubrika-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 10px;
-    background: var(--offwhite);
-    border-radius: 4px;
-    margin-bottom: 5px;
-    font-size: 13px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px;
+    background: var(--offwhite); border-radius: var(--radius);
+    font-size: 14px; font-weight: 500;
   }
+  .rubrika-item-actions { display: flex; gap: 6px; }
 
-  .rubrika-item-actions {
-    display: flex;
-    gap: 5px;
-  }
-
-  .input-inline {
-    display: flex;
-    gap: 7px;
-  }
-
-  .input-inline .form-control {
-    flex: 1;
-  }
-
-  /* TOAST */
-
-  .toast-container {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .toast {
-    background: var(--navy);
-    color: #fff;
-    padding: 12px 16px;
-    border-radius: 6px;
-    box-shadow: var(--shadow-lg);
-    font-size: 13px;
-    transform: translateX(120%);
-    opacity: 0;
-    transition: transform .3s ease, opacity .3s ease;
-  }
-
-  .toast.show {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  .toast.success {
-    border-left: 4px solid var(--green);
-  }
-
-  .toast.error {
-    border-left: 4px solid var(--red);
-  }
-
-  /* ADMIN ARTICLE LIST */
-
-  .admin-article-actions {
+  /* ─── ARTICLE READER (inline, header stays visible) ────── */
+  .reader-section {
     display: none;
-    gap: 5px;
-    margin-top: 10px;
+    background: var(--offwhite);
+    min-height: 60vh;
+    animation: fadeIn .22s ease;
+  }
+  .reader-section.open { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  .reader-breadcrumb {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+  }
+  .reader-breadcrumb-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 20px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--gray);
+  }
+  .reader-breadcrumb button {
+    background: none; color: var(--navy); font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; gap: 5px;
+    padding: 2px 0;
+    transition: color var(--transition);
+  }
+  .reader-breadcrumb button:hover { color: var(--yellow); }
+  .reader-content {
+    max-width: 900px; margin: 0 auto; padding: 40px 20px 80px;
+  }
+  .reader-category {
+    font-size: 12px; font-weight: 600; color: var(--navy);
+    text-transform: uppercase; letter-spacing: .06em;
+    margin-bottom: 12px;
+  }
+  .reader-title {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 900; line-height: 1.12;
+    color: var(--dark); margin-bottom: 16px;
+  }
+  .reader-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 13px; color: var(--gray);
+    margin-bottom: 28px;
+    padding-bottom: 20px; border-bottom: 1px solid var(--border);
+  }
+  .reader-image {
+    width: 100%; max-height: 520px; object-fit: cover;
+    border-radius: var(--radius); margin-bottom: 32px;
+  }
+  .reader-body {
+    font-size: 18px; line-height: 1.75;
+    color: var(--text); font-family: Georgia, serif;
+  }
+  .reader-body p { margin-bottom: 1.4em; }
+  .reader-admin {
+    display: flex; gap: 10px; margin-top: 32px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  /* Hide hero+grid when reader open */
+  .reader-open #heroSection,
+  .reader-open .content-wrapper { display: none; }
+  .reader-open .reader-section { display: block; }
+
+  /* ─── TOAST ─────────────────────────────────────────────── */
+  .toast-container {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9000;
+    display: flex; flex-direction: column; gap: 10px;
+    pointer-events: none;
+  }
+  .toast {
+    background: var(--dark); color: var(--white);
+    padding: 12px 18px; border-radius: 8px;
+    font-size: 14px; box-shadow: var(--shadow-lg);
+    display: flex; align-items: center; gap: 10px;
+    transform: translateX(120%);
+    transition: transform .25s ease;
+    pointer-events: all;
+  }
+  .toast.show { transform: translateX(0); }
+  .toast.success::before { content: '✓'; color: var(--yellow); font-weight: 700; }
+  .toast.error::before { content: '✕'; color: var(--red); font-weight: 700; }
+
+  /* ─── LOADING ────────────────────────────────────────────── */
+  .spinner {
+    width: 20px; height: 20px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-top-color: var(--yellow);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    display: none;
+  }
+  .spinner.active { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-state {
+    text-align: center; padding: 60px 20px;
+    color: var(--gray); font-size: 14px;
   }
 
-  body.admin-mode .admin-article-actions {
-    display: flex;
+  /* ─── EMPTY STATE ───────────────────────────────────────── */
+  .empty-state {
+    text-align: center; padding: 60px 20px;
+    color: var(--gray);
   }
+  .empty-state .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: .4; }
+  .empty-state h3 { font-family: var(--font-serif); font-size: 20px; color: var(--dark); margin-bottom: 8px; }
+  .empty-state p { font-size: 14px; margin-bottom: 20px; }
 
-  .admin-edit-btn {
-    padding: 5px 10px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: #fff;
-    font-size: 11px;
-    color: var(--navy);
+  /* ─── SEARCH BAR ─────────────────────────────────────────── */
+  .search-bar {
+    display: flex; align-items: center;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: var(--radius);
+    padding: 6px 12px; gap: 8px;
   }
-
-  .admin-edit-btn:hover {
-    background: var(--yellow);
-    border-color: var(--yellow);
+  .search-bar input {
+    background: none; border: none; outline: none;
+    color: var(--white); font-size: 13px; width: 160px;
   }
+  .search-bar input::placeholder { color: rgba(255,255,255,.45); }
+  .search-bar svg { opacity: .5; }
 
-  .admin-delete-btn {
-    padding: 5px 10px;
-    border: 1px solid rgba(229,62,62,.25);
-    border-radius: 4px;
-    background: #fff;
-    font-size: 11px;
-    color: var(--red);
+  /* ─── FOOTER ─────────────────────────────────────────────── */
+  .site-footer {
+    background: var(--navy); color: rgba(255,255,255,.55);
+    text-align: center; padding: 24px 20px;
+    font-size: 13px;
   }
+  .site-footer strong { color: var(--yellow); }
 
-  .admin-delete-btn:hover {
-    background: #fff0f0;
+  /* ─── ADMIN BADGE ─────────────────────────────────────────── */
+  .admin-mode-banner {
+    background: var(--yellow); color: var(--navy);
+    text-align: center; font-size: 13px; font-weight: 600;
+    padding: 7px;
+    display: none;
   }
+  .admin-mode-banner.visible { display: block; }
 
-  /* FOOTER */
-
-  footer {
-    background: var(--navy);
-    color: rgba(255,255,255,.55);
-    padding: 35px 20px;
-    text-align: center;
-    font-size: 12px;
-  }
-
-  footer strong {
-    color: #fff;
-  }
-
-  /* RESPONSIVE */
-
+  /* ─── RESPONSIVE ─────────────────────────────────────────── */
   @media (max-width: 900px) {
-    .content-wrapper {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-main {
-      grid-row: auto;
-    }
-
-    .hero-side {
-      min-height: 150px;
-    }
-
-    .reader-header {
-      padding: 35px 25px 25px;
-    }
-
-    .reader-body {
-      padding: 10px 25px 40px;
-    }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-main { min-height: 300px; }
+    .hero-side { display: none; }
+    .content-wrapper { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .brand-name { font-size: 28px; }
+    .search-bar { display: none; }
   }
-
-  @media (max-width: 650px) {
-    .brand-name {
-      font-size: 28px;
-    }
-
-    .brand-tagline {
-      display: none;
-    }
-
-    .search-box {
-      width: 150px;
-    }
-
-    .form-row {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-section {
-      padding-top: 15px;
-    }
-
-    .content-wrapper {
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-
-    .reader-overlay {
-      padding: 10px;
-    }
-
-    .reader-title {
-      font-size: 32px;
-    }
-
-    .reader-body {
-      font-size: 17px;
-    }
-
-    .admin-toolbar {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .admin-toolbar-left,
-    .admin-toolbar-right {
-      justify-content: center;
-    }
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
+  @media (max-width: 600px) {
+    .topbar-date span:last-child { display: none; }
+    .header-brand { height: 56px; }
+    .brand-name { font-size: 24px; }
+    .hero-section { padding: 14px 12px 0; }
+    .content-wrapper { padding: 16px 12px 40px; }
+    .articles-grid { grid-template-columns: 1fr; }
+    .modal { margin: 0; border-radius: 10px 10px 0 0; }
+    .modal-overlay { padding: 0; align-items: flex-end; }
   }
 </style>
 </head>
-
 <body>
 
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ADMIN MODE BANNER -->
+<div class="admin-mode-banner" id="adminBanner">
+  ✦ Uredniški način — ste prijavljeni kot administrator
+</div>
+
+<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="topbar-date" id="topbarDate"></div>
-
+    <div class="topbar-date">
+      <span id="currentDate"></span>
+      <span>·</span>
+      <span>Slovenija</span>
+    </div>
     <div class="topbar-actions">
-      <button id="btnAdminToggle">Urednički dostop</button>
+      <button id="btnAdminToggle">Uredniški dostop</button>
+      <button id="btnSettings" style="display:none">Nastavitve</button>
     </div>
   </div>
 </div>
 
+<!-- SITE HEADER -->
 <header class="site-header">
   <div class="header-brand">
     <div>
-      <div class="brand-name" id="brandName">
-        Vest<span>nik</span>
-      </div>
-
-      <div class="brand-tagline" id="brandTagline">
-        Sodobni digitalni časopis
-      </div>
+      <div class="brand-name" onclick="closeReader();filterCategory('vse',null)" style="cursor:pointer">Vestnik<span>.</span></div>
+      <div class="brand-tagline">Sodobni digitalni časopis</div>
     </div>
-
     <div class="header-right">
-      <div class="search-box">
-        <span class="search-icon">⌕</span>
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Išči članke…"
-        >
+      <div class="search-bar">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="white">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 1.95a7.5 7.5 0 010 14.7z"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Iskanje...">
       </div>
+      <button class="btn btn-primary" id="btnNewArticle" style="display:none">+ Novi članek</button>
     </div>
   </div>
-
+  <!-- NAV -->
   <nav class="site-nav">
-    <div class="nav-inner" id="navInner"></div>
+    <div class="nav-inner" id="navInner">
+      <div class="nav-item active" data-cat="vse" onclick="filterCategory('vse', this)">Vse novice</div>
+      <!-- Dynamic categories injected here -->
+    </div>
   </nav>
 </header>
 
-<div class="admin-banner" id="adminBanner">
-  <div class="admin-toolbar">
-    <div class="admin-toolbar-left">
-      <strong>UREDNIŠKI NAČIN</strong>
-      <span>— upravljanje člankov in strani</span>
-    </div>
-
-    <div class="admin-toolbar-right">
-      <button
-        class="btn btn-primary"
-        id="btnNewArticle"
-        style="display:none"
-        onclick="openArticleEditor()"
-      >
-        + Nov članek
-      </button>
-
-      <button
-        class="btn btn-outline"
-        id="btnSettings"
-        style="display:none"
-        onclick="openSettings()"
-      >
-        ⚙ Nastavitve
-      </button>
-
-      <button
-        class="btn btn-outline"
-        id="btnRefresh"
-        onclick="refreshArticles()"
-      >
-        ↺ Osveži
-      </button>
-    </div>
-  </div>
-</div>
-
+<!-- MAIN -->
 <main>
+  <!-- HERO -->
+  <section class="hero-section" id="heroSection"></section>
 
-  <section class="hero-section">
-    <div class="hero-grid" id="heroGrid"></div>
-  </section>
-
+  <!-- CONTENT -->
   <div class="content-wrapper">
-
-    <section>
+    <div>
       <div class="section-header">
-        <h2>Najnovjši članki</h2>
-        <a href="#" onclick="showAllArticles(); return false;">Vsi članki →</a>
+        <h2 id="sectionTitle">Najnovejše</h2>
+        <button class="btn btn-outline btn-sm" onclick="refreshArticles()" id="btnRefresh" title="Osveži članke">↺ Osveži</button>
       </div>
-
-      <div
-        class="articles-grid"
-        id="articlesGrid"
-      ></div>
-    </section>
-
-    <aside>
-
-      <div class="sidebar-box">
-        <div class="sidebar-title">Najbolj brano</div>
-
-        <ul
-          class="sidebar-list"
-          id="sidebarPopular"
-        ></ul>
+      <div class="articles-grid" id="articlesGrid">
+        <div class="loading-state">Nalaganje člankov…</div>
       </div>
-
-      <div class="sidebar-box">
-        <div class="sidebar-title">Rubrike</div>
-
-        <ul
-          class="sidebar-list"
-          id="sidebarCategories"
-        ></ul>
-      </div>
-
-    </aside>
-
+    </div>
+    <aside class="sidebar" id="sidebar"></aside>
   </div>
+
+<!-- ARTICLE READER (inline, below sticky header) -->
+<section class="reader-section" id="readerSection">
+  <div class="reader-breadcrumb">
+    <div class="reader-breadcrumb-inner">
+      <button onclick="closeReader()">← Nazaj na naslovnico</button>
+      <span>›</span>
+      <span id="readerCrumbCat" style="color:var(--navy);font-weight:500"></span>
+    </div>
+  </div>
+  <div class="reader-content" id="readerContent"></div>
+</section>
+
 </main>
 
-<footer>
-  <strong id="footerSiteName">Vestnik</strong>
-  · Sodobni digitalni časopis
+<!-- FOOTER -->
+<footer class="site-footer">
+  <strong>Moj Vestnik</strong> · Sodobni digitalni časopis · &copy; <span id="footerYear"></span>
 </footer>
 
-<!-- READER -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- MODALS                                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
 
-<div
-  class="reader-overlay"
-  id="readerOverlay"
-  onclick="if(event.target === this) closeReader()"
->
-  <article class="reader">
-
-    <div class="reader-header">
-
-      <button
-        class="reader-close"
-        onclick="closeReader()"
-        aria-label="Zapri"
-      >
-        ×
-      </button>
-
-      <div
-        class="reader-category"
-        id="readerCategory"
-      ></div>
-
-      <h1
-        class="reader-title"
-        id="readerTitle"
-      ></h1>
-
-      <div
-        class="reader-excerpt"
-        id="readerExcerpt"
-      ></div>
-
-      <div
-        class="reader-meta"
-        id="readerMeta"
-      ></div>
-
-    </div>
-
-    <img
-      id="readerHero"
-      class="reader-hero"
-      style="display:none"
-      alt=""
-    >
-
-    <div
-      class="reader-body"
-      id="readerBody"
-    ></div>
-
-  </article>
-</div>
-
-<!-- LOGIN -->
-
-<div
-  class="modal-overlay"
-  id="loginModal"
->
-  <div class="modal small">
-
-    <div class="modal-header">
-      <h3>Urednički dostop</h3>
-
-      <button
-        class="modal-close"
-        onclick="closeModal('loginModal')"
-      >
-        ×
-      </button>
-    </div>
-
-    <div class="modal-body">
-
-      <div class="form-group">
-        <label>Geslo</label>
-
-        <input
-          type="password"
-          id="adminPassword"
-          class="form-control"
-          placeholder="Vnesite geslo"
-          onkeydown="if(event.key==='Enter') checkAdminLogin()"
-        >
-      </div>
-
-    </div>
-
-    <div class="modal-footer">
-
-      <button
-        class="btn btn-outline"
-        onclick="closeModal('loginModal')"
-      >
-        Prekliči
-      </button>
-
-      <button
-        class="btn btn-primary"
-        onclick="checkAdminLogin()"
-      >
-        Prijava
-      </button>
-
-    </div>
-
-  </div>
-</div>
-
-<!-- ARTICLE EDITOR -->
-
-<div
-  class="modal-overlay"
-  id="editorModal"
->
+<!-- ARTICLE EDITOR MODAL -->
+<div class="modal-overlay" id="editorModal">
   <div class="modal">
-
     <div class="modal-header">
-
-      <h3 id="editorTitle">
-        Nov članek
-      </h3>
-
-      <button
-        class="modal-close"
-        onclick="closeModal('editorModal')"
-      >
-        ×
-      </button>
-
+      <h3 id="editorTitle">Nov članek</h3>
+      <button class="modal-close" onclick="closeModal('editorModal')">×</button>
     </div>
-
     <div class="modal-body">
-
-      <input
-        type="hidden"
-        id="editingId"
-      >
-
-      <div class="form-group">
-        <label>Naslov *</label>
-
-        <input
-          type="text"
-          id="articleTitle"
-          class="form-control"
-          placeholder="Naslov članka"
-        >
-      </div>
-
+      <input type="hidden" id="editingId">
       <div class="form-row">
-
         <div class="form-group">
-          <label>Rubrika</label>
-
-          <select
-            id="articleCategory"
-            class="form-control"
-          ></select>
+          <label>Rubrika *</label>
+          <select id="articleCategory"></select>
         </div>
-
         <div class="form-group">
           <label>Avtor</label>
-
-          <input
-            type="text"
-            id="articleAuthor"
-            class="form-control"
-            placeholder="Uredništvo"
-          >
+          <input type="text" id="articleAuthor" placeholder="Ime Priimek">
         </div>
-
       </div>
-
       <div class="form-group">
-        <label>Kratek opis</label>
-
-        <textarea
-          id="articleExcerpt"
-          class="form-control"
-          rows="3"
-          placeholder="Kratek opis članka…"
-        ></textarea>
+        <label>Naslov članka *</label>
+        <input type="text" id="articleTitle" placeholder="Vpišite naslov…">
       </div>
-
       <div class="form-group">
-
+        <label>Kratki povzetek</label>
+        <textarea id="articleExcerpt" rows="2" placeholder="Kratki uvod, ki se prikaže na kartici…"></textarea>
+      </div>
+      <div class="form-group">
         <label>Vsebina *</label>
-
-        <div class="editor-toolbar">
-
-          <button
-            type="button"
-            class="editor-tool"
-            onclick="editorCommand('bold')"
-            title="Krepko"
-          >
-            <strong>B</strong>
-          </button>
-
-          <button
-            type="button"
-            class="editor-tool"
-            onclick="editorCommand('italic')"
-            title="Ležeče"
-          >
-            <em>I</em>
-          </button>
-
-          <button
-            type="button"
-            class="editor-tool"
-            onclick="editorCommand('formatBlock','H2')"
-            title="Naslov 2"
-          >
-            H2
-          </button>
-
-          <button
-            type="button"
-            class="editor-tool"
-            onclick="editorCommand('formatBlock','H3')"
-            title="Naslov 3"
-          >
-            H3
-          </button>
-
-          <button
-            type="button"
-            class="editor-tool"
-            onclick="editorCommand('insertUnorderedList')"
-            title="Seznam"
-          >
-            • Lista
-          </button>
-
-          <button
-            type="button"
-            class="editor-tool media"
-            onclick="insertEditorImage()"
-            title="Vstavi sliko"
-          >
-            🖼 Slika
-          </button>
-
-          <button
-            type="button"
-            class="editor-tool media"
-            onclick="insertYouTube()"
-            title="Vstavi YouTube video"
-          >
-            ▶ YouTube
-          </button>
-
-          <button
-            type="button"
-            class="editor-tool"
-            onclick="editorCommand('removeFormat')"
-            title="Počisti oblikovanje"
-          >
-            Tx
-          </button>
-
-        </div>
-
-        <div
-          id="articleContentEditor"
-          class="article-editor"
-          contenteditable="true"
-          spellcheck="true"
-        ></div>
-
-        <textarea
-          id="articleContent"
-          hidden
-        ></textarea>
-
-        <div class="editor-hint">
-          Tekst lahko oblikujete, dodate slike z URL naslovom in YouTube videe.
-          Elementi se shranijo neposredno v vsebino članka.
-        </div>
-
+        <textarea id="articleContent" rows="8" placeholder="Celotna vsebina članka…"></textarea>
       </div>
-
       <div class="form-group">
-
-        <label>Glavna slika članka</label>
-
-        <input
-          type="url"
-          id="articleImage"
-          class="form-control"
-          placeholder="https://..."
-        >
-
+        <label>URL slike</label>
+        <input type="url" id="articleImage" placeholder="https://…">
+        <div class="form-hint">Priporočene dimenzije: 1200 × 630 px</div>
       </div>
-
     </div>
-
     <div class="modal-footer">
-
-      <button
-        class="btn btn-outline"
-        onclick="closeModal('editorModal')"
-      >
-        Prekliči
-      </button>
-
-      <button
-        class="btn btn-primary"
-        id="btnSaveArticle"
-        onclick="saveArticle()"
-      >
+      <button class="btn btn-outline" onclick="closeModal('editorModal')">Prekliči</button>
+      <button class="btn btn-primary" id="btnSaveArticle" onclick="saveArticle()">
         Objavi članek
       </button>
-
     </div>
-
   </div>
 </div>
 
-<!-- SETTINGS -->
-
-<div
-  class="modal-overlay"
-  id="settingsModal"
->
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsModal">
   <div class="modal">
-
     <div class="modal-header">
-
-      <h3>Nastavitve</h3>
-
-      <button
-        class="modal-close"
-        onclick="closeModal('settingsModal')"
-      >
-        ×
-      </button>
-
+      <h3>Nastavitve uredništva</h3>
+      <button class="modal-close" onclick="closeModal('settingsModal')">×</button>
     </div>
-
     <div class="modal-body">
 
       <div class="settings-section">
-
-        <div class="settings-section-title">
-          GitHub
-        </div>
-
+        <h4>GitHub integracija</h4>
         <div class="form-group">
-
-          <label>GitHub token</label>
-
-          <input
-            type="password"
-            id="ghToken"
-            class="form-control"
-            placeholder="ghp_..."
-          >
-
+          <label>GitHub žeton (Personal Access Token)</label>
+          <input type="password" id="ghToken" placeholder="ghp_…">
+          <div class="form-hint">Token mora imeti dovoljenje <code>repo</code> za pisanje.</div>
         </div>
-
         <div class="form-row">
-
           <div class="form-group">
-
-            <label>Owner</label>
-
-            <input
-              type="text"
-              id="ghOwner"
-              class="form-control"
-              placeholder="username"
-            >
-
+            <label>Lastnik repozitorija</label>
+            <input type="text" id="ghOwner" placeholder="username">
           </div>
-
           <div class="form-group">
-
-            <label>Repository</label>
-
-            <input
-              type="text"
-              id="ghRepo"
-              class="form-control"
-              placeholder="repo"
-            >
-
+            <label>Ime repozitorija</label>
+            <input type="text" id="ghRepo" placeholder="moj-casopis">
           </div>
-
         </div>
-
-        <div class="form-row">
-
-          <div class="form-group">
-
-            <label>Branch</label>
-
-            <input
-              type="text"
-              id="ghBranch"
-              class="form-control"
-              value="main"
-            >
-
-          </div>
-
-          <div class="form-group">
-
-            <label>Datoteka</label>
-
-            <input
-              type="text"
-              id="ghFilePath"
-              class="form-control"
-              value="articles.json"
-            >
-
-          </div>
-
+        <div class="form-group">
+          <label>Veja (branch)</label>
+          <input type="text" id="ghBranch" placeholder="main">
         </div>
-
-        <button
-          class="btn btn-outline"
-          onclick="testConnection()"
-        >
-          Preveri povezavo
-        </button>
-
+        <div class="form-group">
+          <label>Pot do articles.json</label>
+          <input type="text" id="ghFilePath" placeholder="articles.json">
+        </div>
+        <button class="btn btn-primary" onclick="saveSettings()">Shrani nastavitve</button>
+        <button class="btn btn-outline btn-sm" style="margin-left:8px" onclick="testConnection()">Preveri povezavo</button>
       </div>
 
       <div class="settings-section">
-
-        <div class="settings-section-title">
-          Stran
+        <h4>Rubrike</h4>
+        <div class="rubrika-list" id="rubrikaList"></div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <input type="text" id="newRubrikaInput" placeholder="Ime rubrike…" style="flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px">
+          <button class="btn btn-primary btn-sm" onclick="addRubrika()">Dodaj</button>
         </div>
+      </div>
 
+      <div class="settings-section">
+        <h4>Naslov časopisa</h4>
         <div class="form-group">
-
-          <label>Ime strani</label>
-
-          <input
-            type="text"
-            id="siteName"
-            class="form-control"
-          >
-
+          <label>Ime</label>
+          <input type="text" id="siteName" placeholder="Vestnik">
         </div>
-
         <div class="form-group">
-
           <label>Podnaslov</label>
-
-          <input
-            type="text"
-            id="siteTagline"
-            class="form-control"
-          >
-
+          <input type="text" id="siteTagline" placeholder="Sodobni digitalni časopis">
         </div>
-
-        <button
-          class="btn btn-primary"
-          onclick="saveSiteSettings()"
-        >
-          Shrani branding
-        </button>
-
+        <button class="btn btn-primary btn-sm" onclick="saveSiteSettings()">Shrani</button>
       </div>
-
-      <div class="settings-section">
-
-        <div class="settings-section-title">
-          Rubrike
-        </div>
-
-        <div
-          id="rubrikaList"
-          class="rubrika-list"
-        ></div>
-
-        <div class="input-inline">
-
-          <input
-            type="text"
-            id="newRubrikaInput"
-            class="form-control"
-            placeholder="Nova rubrika"
-          >
-
-          <button
-            class="btn btn-outline"
-            onclick="addRubrika()"
-          >
-            Dodaj
-          </button>
-
-        </div>
-
-      </div>
-
     </div>
-
     <div class="modal-footer">
-
-      <button
-        class="btn btn-outline"
-        onclick="closeModal('settingsModal')"
-      >
-        Zapri
-      </button>
-
-      <button
-        class="btn btn-primary"
-        onclick="saveSettings(); closeModal('settingsModal')"
-      >
-        Shrani
-      </button>
-
+      <button class="btn btn-outline" onclick="closeModal('settingsModal')">Zapri</button>
     </div>
-
   </div>
 </div>
 
-<!-- CONFIRM DELETE -->
-
-<div
-  class="modal-overlay"
-  id="confirmModal"
->
-  <div class="modal small">
-
+<!-- CONFIRM DELETE MODAL -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal" style="max-width:420px">
     <div class="modal-header">
-
-      <h3>Izbriši članek</h3>
-
-      <button
-        class="modal-close"
-        onclick="closeModal('confirmModal')"
-      >
-        ×
-      </button>
-
+      <h3>Potrditev brisanja</h3>
+      <button class="modal-close" onclick="closeModal('confirmModal')">×</button>
     </div>
-
     <div class="modal-body">
-
-      <p>
-        Ali ste prepričani, da želite izbrisati ta članek?
-        Tega dejanja ni mogoče razveljaviti.
-      </p>
-
+      <p style="font-size:15px;color:var(--text)">Ali ste prepričani, da želite izbrisati ta članek? Tega dejanja ni mogoče razveljaviti.</p>
     </div>
-
     <div class="modal-footer">
-
-      <button
-        class="btn btn-outline"
-        onclick="closeModal('confirmModal')"
-      >
-        Prekliči
-      </button>
-
-      <button
-        class="btn btn-danger"
-        id="btnConfirmDelete"
-      >
-        Izbriši
-      </button>
-
+      <button class="btn btn-outline" onclick="closeModal('confirmModal')">Prekliči</button>
+      <button class="btn btn-danger" id="btnConfirmDelete">Izbriši</button>
     </div>
-
   </div>
 </div>
 
-<div
-  class="toast-container"
-  id="toastContainer"
-></div>
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal" style="max-width:380px">
+    <div class="modal-header">
+      <h3>Uredniški dostop</h3>
+      <button class="modal-close" onclick="closeModal('loginModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Administratorsko geslo</label>
+        <input type="password" id="adminPassword" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkAdminLogin()">
+        <div class="form-hint">Geslo nastavite v settings.json ali lokalno.</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('loginModal')">Prekliči</button>
+      <button class="btn btn-primary" onclick="checkAdminLogin()">Prijava</button>
+    </div>
+  </div>
+</div>
 
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
 <script>
-
-/* ==========================================================
+/* ──────────────────────────────────────────────────────────
    STATE
-========================================================== */
-
-const DEFAULT_CATEGORIES = [
-  'Novice',
-  'Šport',
-  'Kultura',
-  'Gospodarstvo',
-  'Družba',
-  'Pomurje'
-];
-
-const DEFAULT_SETTINGS = {
-  ghToken: '',
-  ghOwner: '',
-  ghRepo: '',
-  ghBranch: 'main',
-  ghFilePath: 'articles.json',
-  siteName: 'Vestnik',
-  siteTagline: 'Sodobni digitalni časopis',
-  adminPass: 'urednik2024'
-};
-
-const STATE = {
+────────────────────────────────────────────────────────── */
+let STATE = {
   articles: [],
-  categories: [...DEFAULT_CATEGORIES],
-  settings: {...DEFAULT_SETTINGS},
+  categories: ['Slovenija', 'Svet', 'Gospodarstvo', 'Šport', 'Kultura', 'Tehnologija'],
+  settings: {
+    ghToken: '', ghOwner: '', ghRepo: '', ghBranch: 'main',
+    ghFilePath: 'articles.json',
+    siteName: 'Moj Vestnik', siteTagline: 'Sodobni digitalni časopis',
+    adminPass: '123'
+  },
   isAdmin: false,
-  currentCategory: '',
-  deleteTargetId: null
+  currentCategory: 'vse',
+  currentReader: null,
+  deleteTargetId: null,
 };
 
-/* ==========================================================
+/* ──────────────────────────────────────────────────────────
    INIT
-========================================================== */
-
-document.addEventListener('DOMContentLoaded', async () => {
-
+────────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
   loadLocalState();
-
+  setDate();
   applyBranding();
-
   renderNav();
-
-  renderCategories();
-
-  renderHero();
-
-  renderArticles();
-
-  renderSidebar();
-
-  updateDate();
-
+  loadArticles();
   setupSearch();
 
-  const editor = document.getElementById('articleContentEditor');
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+  document.getElementById('btnNewArticle').addEventListener('click', () => openArticleEditor());
+  document.getElementById('btnSettings').addEventListener('click', openSettings);
+  document.getElementById('btnAdminToggle').addEventListener('click', () => openModal('loginModal'));
 
-  if (editor) {
-    editor.addEventListener('input', syncEditorContent);
-  }
-
-  document.getElementById('btnAdminToggle').onclick = () => {
-    if (STATE.isAdmin) {
-      adminLogout();
-    } else {
-      openModal('loginModal');
-    }
-  };
-
-  await loadArticles();
-
+  // Close modals on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(el => {
+    el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
+  });
 });
 
-/* ==========================================================
-   LOCAL STORAGE
-========================================================== */
-
 function loadLocalState() {
-
   try {
-
-    const saved = localStorage.getItem('vestnik_state');
-
-    if (saved) {
-
-      const parsed = JSON.parse(saved);
-
-      STATE.articles = Array.isArray(parsed.articles)
-        ? parsed.articles
-        : [];
-
-      STATE.categories = Array.isArray(parsed.categories)
-        ? parsed.categories
-        : [...DEFAULT_CATEGORIES];
-
-      STATE.settings = {
-        ...DEFAULT_SETTINGS,
-        ...(parsed.settings || {})
-      };
-
-    }
-
-  } catch (e) {
-
-    console.error('Local state error:', e);
-
-  }
-
+    const s = localStorage.getItem('vestnik_settings');
+    if (s) STATE.settings = { ...STATE.settings, ...JSON.parse(s) };
+    const c = localStorage.getItem('vestnik_cats');
+    if (c) STATE.categories = JSON.parse(c);
+    const a = localStorage.getItem('vestnik_articles');
+    if (a) STATE.articles = JSON.parse(a);
+  } catch(e) {}
 }
 
 function saveLocalState() {
-
-  try {
-
-    localStorage.setItem(
-      'vestnik_state',
-      JSON.stringify({
-        articles: STATE.articles,
-        categories: STATE.categories,
-        settings: STATE.settings
-      })
-    );
-
-  } catch (e) {
-
-    console.error('Save local state error:', e);
-
-  }
-
+  localStorage.setItem('vestnik_settings', JSON.stringify(STATE.settings));
+  localStorage.setItem('vestnik_cats', JSON.stringify(STATE.categories));
+  localStorage.setItem('vestnik_articles', JSON.stringify(STATE.articles));
 }
 
-/* ==========================================================
-   GITHUB
-========================================================== */
-
-async function loadArticles() {
-
-  const {
-    ghToken,
-    ghOwner,
-    ghRepo,
-    ghBranch,
-    ghFilePath
-  } = STATE.settings;
-
-  if (!ghToken || !ghOwner || !ghRepo) {
-
-    renderHero();
-    renderArticles();
-    renderSidebar();
-
-    return;
-
-  }
-
-  try {
-
-    const url =
-      `https://api.github.com/repos/${ghOwner}/${ghRepo}/contents/${ghFilePath}?ref=${encodeURIComponent(ghBranch || 'main')}`;
-
-    const response = await fetch(url, {
-      headers: {
-        Authorization: `token ${ghToken}`,
-        Accept: 'application/vnd.github+json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error('GitHub HTTP ' + response.status);
-    }
-
-    const data = await response.json();
-
-    const decoded = decodeURIComponent(
-      Array.prototype.map.call(
-        atob(data.content.replace(/\n/g, '')),
-        c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      ).join('')
-    );
-
-    const parsed = JSON.parse(decoded);
-
-    if (Array.isArray(parsed)) {
-      STATE.articles = parsed;
-    } else if (Array.isArray(parsed.articles)) {
-      STATE.articles = parsed.articles;
-    }
-
-    saveLocalState();
-
-    renderHero();
-    renderArticles();
-    renderSidebar();
-
-  } catch (e) {
-
-    console.error('GitHub load error:', e);
-
-  }
-
+function setDate() {
+  const d = new Date();
+  const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('currentDate').textContent = d.toLocaleDateString('sl-SI', opts);
 }
-
-async function saveToGitHub() {
-
-  const {
-    ghToken,
-    ghOwner,
-    ghRepo,
-    ghBranch,
-    ghFilePath
-  } = STATE.settings;
-
-  if (!ghToken || !ghOwner || !ghRepo) {
-    return false;
-  }
-
-  try {
-
-    const url =
-      `https://api.github.com/repos/${ghOwner}/${ghRepo}/contents/${ghFilePath}`;
-
-    let sha = null;
-
-    const existing = await fetch(
-      `${url}?ref=${encodeURIComponent(ghBranch || 'main')}`,
-      {
-        headers: {
-          Authorization: `token ${ghToken}`,
-          Accept: 'application/vnd.github+json'
-        }
-      }
-    );
-
-    if (existing.ok) {
-
-      const existingData = await existing.json();
-
-      sha = existingData.sha;
-
-    }
-
-    const content = JSON.stringify(
-      STATE.articles,
-      null,
-      2
-    );
-
-    const encoded = btoa(
-      unescape(
-        encodeURIComponent(content)
-      )
-    );
-
-    const body = {
-      message: 'Posodobitev člankov',
-      content: encoded,
-      branch: ghBranch || 'main'
-    };
-
-    if (sha) {
-      body.sha = sha;
-    }
-
-    const response = await fetch(
-      url,
-      {
-        method: 'PUT',
-        headers: {
-          Authorization: `token ${ghToken}`,
-          Accept: 'application/vnd.github+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(
-        'GitHub save HTTP ' + response.status
-      );
-    }
-
-    return true;
-
-  } catch (e) {
-
-    console.error('GitHub save error:', e);
-
-    return false;
-
-  }
-
-}
-
-/* ==========================================================
-   BRANDING
-========================================================== */
 
 function applyBranding() {
-
-  const siteName =
-    STATE.settings.siteName || 'Vestnik';
-
-  const tagline =
-    STATE.settings.siteTagline ||
-    'Sodobni digitalni časopis';
-
-  const nameElement =
-    document.getElementById('brandName');
-
-  const footerName =
-    document.getElementById('footerSiteName');
-
-  const taglineElement =
-    document.getElementById('brandTagline');
-
-  if (nameElement) {
-
-    if (siteName.toLowerCase() === 'vestnik') {
-
-      nameElement.innerHTML =
-        'Vest<span>nik</span>';
-
-    } else {
-
-      nameElement.textContent = siteName;
-
-    }
-
-  }
-
-  if (footerName) {
-    footerName.textContent = siteName;
-  }
-
-  if (taglineElement) {
-    taglineElement.textContent = tagline;
-  }
-
+  document.title = STATE.settings.siteName + ' — Sodobni časopis';
+  const bn = document.querySelector('.brand-name');
+  bn.innerHTML = STATE.settings.siteName + '<span>.</span>';
+  bn.style.cursor = 'pointer';
+  bn.onclick = () => { closeReader(); filterCategory('vse', null); };
+  document.querySelector('.brand-tagline').textContent = STATE.settings.siteTagline;
 }
 
-/* ==========================================================
-   DATE
-========================================================== */
-
-function updateDate() {
-
-  const el =
-    document.getElementById('topbarDate');
-
-  if (!el) return;
-
-  el.textContent =
-    new Date().toLocaleDateString(
-      'sl-SI',
-      {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      }
-    );
-
-}
-
-/* ==========================================================
-   NAVIGATION
-========================================================== */
-
+/* ──────────────────────────────────────────────────────────
+   CATEGORIES / NAV
+────────────────────────────────────────────────────────── */
 function renderNav() {
-
-  const nav =
-    document.getElementById('navInner');
-
-  if (!nav) return;
-
-  const all = `
-    <div
-      class="nav-item ${STATE.currentCategory === '' ? 'active' : ''}"
-      onclick="filterCategory('')"
-    >
-      Vse
-    </div>
-  `;
-
-  const categories =
-    STATE.categories
-      .map(category => `
-        <div
-          class="nav-item ${STATE.currentCategory === category ? 'active' : ''}"
-          onclick="filterCategory('${escJs(category)}')"
-        >
-          ${esc(category)}
-        </div>
-      `)
-      .join('');
-
-  nav.innerHTML = all + categories;
-
-}
-
-function filterCategory(category) {
-
-  STATE.currentCategory = category;
-
-  renderNav();
-
-  renderArticles();
-
-}
-
-function showAllArticles() {
-
-  STATE.currentCategory = '';
-
-  renderNav();
-
-  renderArticles();
-
-  window.scrollTo({
-    top: document.querySelector('.content-wrapper')?.offsetTop || 0,
-    behavior: 'smooth'
+  const nav = document.getElementById('navInner');
+  // keep "Vse novice"
+  nav.innerHTML = `<div class="nav-item ${STATE.currentCategory==='vse'?'active':''}" data-cat="vse" onclick="filterCategory('vse', this)">Vse novice</div>`;
+  STATE.categories.forEach(cat => {
+    const div = document.createElement('div');
+    div.className = 'nav-item' + (STATE.currentCategory===cat?' active':'');
+    div.dataset.cat = cat;
+    div.textContent = cat;
+    div.onclick = function() { filterCategory(cat, this); };
+    nav.appendChild(div);
   });
-
 }
 
-/* ==========================================================
-   CATEGORIES
-========================================================== */
-
-function renderCategories() {
-
-  const select =
-    document.getElementById('articleCategory');
-
-  if (!select) return;
-
-  select.innerHTML =
-    STATE.categories
-      .map(category =>
-        `<option value="${esc(category)}">${esc(category)}</option>`
-      )
-      .join('');
-
+function filterCategory(cat, el) {
+  // Zapri reader če je odprt
+  if (document.getElementById('readerSection').classList.contains('open')) {
+    document.getElementById('readerSection').classList.remove('open');
+    document.querySelector('main').classList.remove('reader-open');
+    STATE.currentReader = null;
+  }
+  STATE.currentCategory = cat;
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (el) {
+    el.classList.add('active');
+  } else {
+    const found = document.querySelector(`.nav-item[data-cat="${cat}"]`);
+    if (found) found.classList.add('active');
+  }
+  document.getElementById('sectionTitle').textContent = cat === 'vse' ? 'Najnovejše' : cat;
+  // Pokaži hero samo pri "vse novice"
+  const hero = document.getElementById('heroSection');
+  if (cat === 'vse') {
+    hero.style.display = '';
+  } else {
+    hero.style.display = 'none';
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  renderArticles();
 }
 
-/* ==========================================================
-   HERO
-========================================================== */
+/* ──────────────────────────────────────────────────────────
+   LOAD ARTICLES — GitHub API or local
+────────────────────────────────────────────────────────── */
+async function loadArticles() {
+  const { ghOwner, ghRepo, ghFilePath, ghBranch, ghToken } = STATE.settings;
 
+  // 1. Try loading from same-origin (works when hosted on GitHub Pages)
+  try {
+    const res = await fetch(ghFilePath || 'articles.json', { cache: 'no-store' });
+    if (res.ok) {
+      const json = await res.json();
+      STATE.articles = json.articles || json;
+      saveLocalState();
+      renderHero(); renderArticles(); renderSidebar();
+      return;
+    }
+  } catch(e) {}
+
+  // 2. Try GitHub raw URL (public repos, no token needed)
+  if (ghOwner && ghRepo && ghFilePath) {
+    try {
+      const rawUrl = `https://raw.githubusercontent.com/${ghOwner}/${ghRepo}/${ghBranch||'main'}/${ghFilePath}?t=${Date.now()}`;
+      const res = await fetch(rawUrl);
+      if (res.ok) {
+        const json = await res.json();
+        STATE.articles = json.articles || json;
+        saveLocalState();
+        renderHero(); renderArticles(); renderSidebar();
+        return;
+      }
+    } catch(e) {}
+  }
+
+  // 3. Try GitHub API (needs token, always fresh)
+  if (ghOwner && ghRepo && ghFilePath && ghToken) {
+    try {
+      const res = await fetch(
+        `https://api.github.com/repos/${ghOwner}/${ghRepo}/contents/${ghFilePath}?ref=${ghBranch||'main'}`,
+        { headers: { Authorization: `token ${ghToken}`, Accept: 'application/vnd.github.v3+json' } }
+      );
+      if (res.ok) {
+        const json = await res.json();
+        const decoded = JSON.parse(atob(json.content.replace(/\s/g, '')));
+        STATE.articles = decoded.articles || decoded;
+        saveLocalState();
+        renderHero(); renderArticles(); renderSidebar();
+        return;
+      }
+    } catch(e) { console.warn('GitHub API load failed'); }
+  }
+
+  // 4. Use local cache or show empty state
+  renderHero(); renderArticles(); renderSidebar();
+}
+
+/* ──────────────────────────────────────────────────────────
+   SAVE TO GITHUB
+────────────────────────────────────────────────────────── */
+async function saveToGitHub() {
+  const { ghToken, ghOwner, ghRepo, ghFilePath, ghBranch } = STATE.settings;
+  if (!ghToken || !ghOwner || !ghRepo) {
+    toast('GitHub ni konfiguriran — shranjeno samo lokalno.', 'error');
+    return false;
+  }
+  // Get current SHA
+  let sha = null;
+  try {
+    const r = await fetch(
+      `https://api.github.com/repos/${ghOwner}/${ghRepo}/contents/${ghFilePath}?ref=${ghBranch}`,
+      { headers: { Authorization: `token ${ghToken}`, Accept: 'application/vnd.github.v3+json' } }
+    );
+    if (r.ok) { const j = await r.json(); sha = j.sha; }
+  } catch(e) {}
+
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify({ articles: STATE.articles }, null, 2))));
+  const body = {
+    message: `Posodobitev člankov — ${new Date().toLocaleString('sl-SI')}`,
+    content,
+    branch: ghBranch,
+  };
+  if (sha) body.sha = sha;
+
+  const res = await fetch(
+    `https://api.github.com/repos/${ghOwner}/${ghRepo}/contents/${ghFilePath}`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${ghToken}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify(body)
+    }
+  );
+  return res.ok;
+}
+
+/* ──────────────────────────────────────────────────────────
+   HERO RENDER
+────────────────────────────────────────────────────────── */
 function renderHero() {
+  const section = document.getElementById('heroSection');
+  if (STATE.articles.length === 0) { section.innerHTML = ''; return; }
 
-  const grid =
-    document.getElementById('heroGrid');
+  const sorted = [...STATE.articles].sort((a,b) => new Date(b.date) - new Date(a.date));
+  const hero = sorted[0];
+  const second = sorted[1];
+  const third = sorted[2];
 
-  if (!grid) return;
-
-  const articles =
-    [...STATE.articles]
-      .sort(
-        (a,b) =>
-          new Date(b.date || b.updated || 0) -
-          new Date(a.date || a.updated || 0)
-      );
-
-  if (!articles.length) {
-
-    grid.innerHTML = `
-      <div
-        class="hero-main"
-        style="grid-column:1/-1;display:flex;align-items:center;justify-content:center"
-      >
-        <div
-          style="text-align:center;color:#fff;padding:50px"
-        >
-          <div
-            style="font-family:var(--font-serif);font-size:28px;margin-bottom:10px"
-          >
-            Dobrodošli v Vestniku
-          </div>
-
-          <div
-            style="color:rgba(255,255,255,.65)"
-          >
-            Dodajte prvi članek v uredniškem načinu.
+  section.innerHTML = `
+    <div class="hero-grid">
+      <div class="hero-main" onclick="openReader(${hero.id})">
+        ${hero.image
+          ? `<img src="${hero.image}" alt="${esc(hero.title)}" loading="lazy">`
+          : `<div style="width:100%;height:100%;background:var(--navy)"></div>`}
+        <div class="hero-main-content">
+          <span class="badge">${esc(hero.category)}</span>
+          <h2>${esc(hero.title)}</h2>
+          <p>${esc(hero.excerpt || '')}</p>
+          <div class="hero-meta">
+            <span>${esc(hero.author || 'Uredništvo')}</span>
+            <span>·</span>
+            <span>${formatDate(hero.date)}</span>
           </div>
         </div>
       </div>
-    `;
-
-    return;
-
-  }
-
-  const hero =
-    articles[0];
-
-  const side =
-    articles.slice(1,3);
-
-  let html = `
-    <div
-      class="hero-main"
-      onclick="openReader(${hero.id})"
-    >
-  `;
-
-  if (hero.image) {
-
-    html += `
-      <img
-        src="${esc(hero.image)}"
-        alt="${esc(hero.title)}"
-        onerror="this.style.display='none'"
-      >
-    `;
-
-  }
-
-  html += `
-      <div class="hero-main-content">
-
-        <span class="badge">
-          ${esc(hero.category || 'Novice')}
-        </span>
-
-        <h2>
-          ${esc(hero.title)}
-        </h2>
-
-        <p>
-          ${esc(hero.excerpt || stripHtml(hero.content || ''))}
-        </p>
-
-        <div class="hero-meta">
-          <span>${esc(hero.author || 'Uredništvo')}</span>
-          <span>•</span>
-          <span>${formatDate(hero.date || hero.updated)}</span>
-        </div>
-
-      </div>
-    </div>
-  `;
-
-  side.forEach(article => {
-
-    html += `
-      <div
-        class="hero-side"
-        onclick="openReader(${article.id})"
-      >
-
-        <span class="badge">
-          ${esc(article.category || 'Novice')}
-        </span>
-
-        <h3>
-          ${esc(article.title)}
-        </h3>
-
-        <p>
-          ${esc(article.excerpt || stripHtml(article.content || ''))}
-        </p>
-
-        <div class="hero-side-meta">
-          ${formatDate(article.date || article.updated)}
-        </div>
-
-      </div>
-    `;
-
-  });
-
-  grid.innerHTML = html;
-
+      ${second ? `
+      <div class="hero-side" onclick="openReader(${second.id})">
+        <span class="badge" style="background:var(--offwhite);color:var(--navy)">${esc(second.category)}</span>
+        <h3>${esc(second.title)}</h3>
+        <p>${esc(second.excerpt || '')}</p>
+        <div class="hero-side-meta">${esc(second.author || 'Uredništvo')} · ${formatDate(second.date)}</div>
+      </div>` : ''}
+      ${third ? `
+      <div class="hero-side" onclick="openReader(${third.id})">
+        <span class="badge" style="background:var(--offwhite);color:var(--navy)">${esc(third.category)}</span>
+        <h3>${esc(third.title)}</h3>
+        <p>${esc(third.excerpt || '')}</p>
+        <div class="hero-side-meta">${esc(third.author || 'Uredništvo')} · ${formatDate(third.date)}</div>
+      </div>` : ''}
+    </div>`;
 }
 
-/* ==========================================================
-   ARTICLES
-========================================================== */
-
+/* ──────────────────────────────────────────────────────────
+   ARTICLES GRID RENDER
+────────────────────────────────────────────────────────── */
 function renderArticles() {
+  const grid = document.getElementById('articlesGrid');
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  let articles = [...STATE.articles].sort((a,b) => new Date(b.date)-new Date(a.date));
 
-  const grid =
-    document.getElementById('articlesGrid');
+// Glavni članek je že prikazan v HERO delu,
+// zato ga na seznamu "Najnovejše" ne prikažemo še enkrat.
+// Pri iskanju pa se lahko še vedno prikaže.
+const featured = articles[0];
 
-  if (!grid) return;
-
-  const search =
-    (
-      document.getElementById('searchInput')?.value ||
-      ''
-    ).trim().toLowerCase();
-
-  let articles =
-    [...STATE.articles]
-      .sort(
-        (a,b) =>
-          new Date(b.date || b.updated || 0) -
-          new Date(a.date || a.updated || 0)
-      );
-
-  if (STATE.currentCategory) {
-
-    articles =
-      articles.filter(
-        article =>
-          article.category === STATE.currentCategory
-      );
-
-  }
-
-  if (search) {
-
-    articles =
-      articles.filter(article => {
-
-        const text = [
-          article.title,
-          article.excerpt,
-          article.content,
-          article.author,
-          article.category
-        ]
-          .join(' ')
-          .toLowerCase();
-
-        return text.includes(search);
-
-      });
-
-  }
-
-  if (!articles.length) {
-
-    grid.innerHTML = `
-      <div
-        style="grid-column:1/-1;background:#fff;padding:40px;text-align:center;border-radius:6px"
-      >
-        <strong>Ni zadetkov.</strong>
-      </div>
-    `;
-
-    return;
-
-  }
-
-  grid.innerHTML =
-    articles
-      .map(article => articleCard(article))
-      .join('');
-
+if (STATE.currentCategory === 'vse' && !q && featured) {
+  articles = articles.filter(a => a.id !== featured.id);
 }
 
-function articleCard(article) {
-
-  const image =
-    article.image
-      ? `
-        <img
-          src="${esc(article.image)}"
-          alt="${esc(article.title)}"
-          onerror="this.style.display='none'"
-        >
-      `
-      : `
-        <div class="card-image-placeholder">
-          V
-        </div>
-      `;
-
-  return `
-    <article
-      class="article-card"
-      onclick="openReader(${article.id})"
-    >
-
-      <div class="card-image">
-        ${image}
-
-        <span
-          class="badge"
-          style="position:absolute;top:10px;left:10px"
-        >
-          ${esc(article.category || 'Novice')}
-        </span>
-      </div>
-
-      <div class="card-body">
-
-        <div class="card-category">
-          ${esc(article.category || 'Novice')}
-        </div>
-
-        <div class="card-title">
-          ${esc(article.title)}
-        </div>
-
-        <div class="card-excerpt">
-          ${esc(
-            article.excerpt ||
-            stripHtml(article.content || '')
-          )}
-        </div>
-
-        <div class="card-meta">
-          <span>
-            ${esc(article.author || 'Uredništvo')}
-          </span>
-
-          <span>
-            ${formatDate(article.date || article.updated)}
-          </span>
-        </div>
-
-        <div
-          class="admin-article-actions"
-          onclick="event.stopPropagation()"
-        >
-
-          <button
-            class="admin-edit-btn"
-            onclick="openArticleEditor(${article.id})"
-          >
-            Uredi
-          </button>
-
-          <button
-            class="admin-delete-btn"
-            onclick="confirmDelete(${article.id})"
-          >
-            Izbriši
-          </button>
-
-        </div>
-
-      </div>
-
-    </article>
-  `;
-
-}
-
-/* ==========================================================
-   SIDEBAR
-========================================================== */
-
-function renderSidebar() {
-
-  const popular =
-    document.getElementById('sidebarPopular');
-
-  const categories =
-    document.getElementById('sidebarCategories');
-
-  if (popular) {
-
-    const articles =
-      [...STATE.articles]
-        .sort(
-          (a,b) =>
-            new Date(b.date || b.updated || 0) -
-            new Date(a.date || a.updated || 0)
-        )
-        .slice(0,5);
-
-    popular.innerHTML =
-      articles.length
-        ? articles.map(article => `
-          <li>
-            <a
-              href="#"
-              onclick="openReader(${article.id}); return false;"
-            >
-              ${esc(article.title)}
-            </a>
-
-            <div class="sidebar-list-meta">
-              ${esc(article.category || 'Novice')}
-              ·
-              ${formatDate(article.date || article.updated)}
-            </div>
-          </li>
-        `).join('')
-        : `
-          <li>
-            <span style="font-size:13px;color:var(--gray)">
-              Še ni člankov.
-            </span>
-          </li>
-        `;
-
-  }
-
-  if (categories) {
-
-    categories.innerHTML =
-      STATE.categories.map(category => {
-
-        const count =
-          STATE.articles.filter(
-            article =>
-              article.category === category
-          ).length;
-
-        return `
-          <li>
-
-            <a
-              href="#"
-              onclick="filterCategory('${escJs(category)}'); return false;"
-            >
-              ${esc(category)}
-            </a>
-
-            <div class="sidebar-list-meta">
-              ${count} člank${count === 1 ? 'ek' : 'ov'}
-            </div>
-
-          </li>
-        `;
-
-      }).join('');
-
-  }
-
-}
-
-/* ==========================================================
-   ARTICLE READER
-========================================================== */
-
-function openReader(id) {
-
-  const article =
-    STATE.articles.find(
-      a => String(a.id) === String(id)
+  if (STATE.currentCategory !== 'vse')
+    articles = articles.filter(a => a.category === STATE.currentCategory);
+  if (q)
+    articles = articles.filter(a =>
+      a.title.toLowerCase().includes(q) ||
+      (a.excerpt||'').toLowerCase().includes(q) ||
+      (a.content||'').toLowerCase().includes(q)
     );
 
-  if (!article) return;
-
-  document.getElementById('readerCategory').textContent =
-    article.category || 'Novice';
-
-  document.getElementById('readerTitle').textContent =
-    article.title || '';
-
-  document.getElementById('readerExcerpt').textContent =
-    article.excerpt || '';
-
-  document.getElementById('readerMeta').innerHTML = `
-    <span>
-      ${esc(article.author || 'Uredništvo')}
-    </span>
-
-    <span>•</span>
-
-    <span>
-      ${formatDate(article.date || article.updated)}
-    </span>
-
-    <span>•</span>
-
-    <span>
-      ${readTime(article.content || '')} min branja
-    </span>
-  `;
-
-  const hero =
-    document.getElementById('readerHero');
-
-  if (article.image) {
-
-    hero.src = article.image;
-    hero.alt = article.title || '';
-    hero.style.display = 'block';
-
-  } else {
-
-    hero.removeAttribute('src');
-    hero.style.display = 'none';
-
+  if (articles.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <div class="empty-icon">📰</div>
+      <h3>Ni člankov</h3>
+      <p>${q ? 'Iskanje ni vrnilo rezultatov.' : 'Še ni objavljenih člankov v tej rubriki.'}</p>
+      ${STATE.isAdmin ? `<button class="btn btn-primary" onclick="openArticleEditor()">+ Dodaj prvi članek</button>` : ''}
+    </div>`;
+    return;
   }
 
-  document.getElementById('readerBody').innerHTML =
-    formatContent(article.content || '');
+  grid.innerHTML = articles.map(a => articleCard(a)).join('');
+}
 
-  document.getElementById('readerOverlay')
-    .classList.add('open');
+function articleCard(a) {
+  const adminBtns = STATE.isAdmin ? `
+    <div class="card-admin-actions">
+      <button class="btn btn-outline btn-sm" onclick="event.stopPropagation();openArticleEditor(${a.id})">✎ Uredi</button>
+      <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();confirmDelete(${a.id})">✕ Briši</button>
+    </div>` : '';
 
-  document.body.style.overflow = 'hidden';
+  return `<div class="article-card" onclick="openReader(${a.id})">
+    <div class="card-image">
+      ${a.image
+        ? `<img src="${esc(a.image)}" alt="${esc(a.title)}" loading="lazy">`
+        : `<div class="card-image-placeholder">V</div>`}
+    </div>
+    <div class="card-body">
+      <div class="card-category">${esc(a.category)}</div>
+      <div class="card-title">${esc(a.title)}</div>
+      <div class="card-excerpt">${esc(a.excerpt || a.content?.substring(0,160) || '')}</div>
+      <div class="card-footer">
+        <div class="card-author">
+          <div class="card-avatar">${(a.author||'U')[0].toUpperCase()}</div>
+          <span>${esc(a.author||'Uredništvo')}</span>
+        </div>
+        <span>${formatDate(a.date)}</span>
+      </div>
+      ${adminBtns}
+    </div>
+  </div>`;
+}
 
+/* ──────────────────────────────────────────────────────────
+   SIDEBAR
+────────────────────────────────────────────────────────── */
+function renderSidebar() {
+  const sb = document.getElementById('sidebar');
+  const top = [...STATE.articles].sort((a,b) => new Date(b.date)-new Date(a.date)).slice(0,6);
+
+  sb.innerHTML = `
+    <div class="sidebar-widget">
+      <div class="widget-title">Aktualno</div>
+      ${top.length === 0
+        ? `<p style="font-size:13px;color:var(--gray)">Ni vsebine.</p>`
+        : top.map((a,i) => `
+          <div class="trending-item" onclick="openReader(${a.id})">
+            <div class="trending-num">${String(i+1).padStart(2,'0')}</div>
+            <div class="trending-text">
+              <h4>${esc(a.title)}</h4>
+              <span>${esc(a.category)} · ${formatDate(a.date)}</span>
+            </div>
+          </div>`).join('')}
+    </div>
+    <div class="sidebar-widget">
+      <div class="widget-title">Rubrike</div>
+      ${STATE.categories.map(c => {
+        const cnt = STATE.articles.filter(a => a.category===c).length;
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer;font-size:14px"
+          onclick="filterCategory('${esc(c)}', null)">
+          <span style="font-weight:500">${esc(c)}</span>
+          <span style="color:var(--gray);font-size:12px">${cnt}</span>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+/* ──────────────────────────────────────────────────────────
+   ARTICLE READER
+────────────────────────────────────────────────────────── */
+function openReader(id) {
+  const article = STATE.articles.find(a => a.id === id);
+  if (!article) return;
+  STATE.currentReader = article;
+
+  const content = document.getElementById('readerContent');
+  const adminBtns = STATE.isAdmin ? `<div class="reader-admin">
+    <button class="btn btn-outline" onclick="openArticleEditor(${article.id})">&#x270E; Uredi \u010dlanek</button>
+    <button class="btn btn-danger" onclick="confirmDelete(${article.id})">&#x2715; Izbri\u0161i</button>
+  </div>` : '';
+
+  content.innerHTML = `
+    <div class="reader-category">${esc(article.category)}</div>
+    <h1 class="reader-title">${esc(article.title)}</h1>
+    <div class="reader-meta">
+      <span>${esc(article.author || 'Uredni\u0161tvo')}</span>
+      <span>\u00b7</span>
+      <span>${formatDate(article.date)}</span>
+      <span>\u00b7</span>
+      <span>${readTime(article.content)} min branja</span>
+    </div>
+    ${article.image ? `<img class="reader-image" src="${esc(article.image)}" alt="${esc(article.title)}" loading="lazy">` : ''}
+    <div class="reader-body">${formatContent(article.content || '')}</div>
+    ${adminBtns}
+  `;
+
+  document.getElementById('readerCrumbCat').textContent = article.category;
+  document.getElementById('readerSection').classList.add('open');
+  document.querySelector('main').classList.add('reader-open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function closeReader() {
+  document.getElementById('readerSection').classList.remove('open');
+  document.querySelector('main').classList.remove('reader-open');
+  STATE.currentReader = null;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-  document.getElementById('readerOverlay')
-    .classList.remove('open');
-
-  document.body.style.overflow = '';
-
+function formatContent(text) {
+  return text.split('\n').filter(Boolean).map(p => `<p>${esc(p)}</p>`).join('');
 }
 
 function readTime(text) {
-
-  const plain =
-    stripHtml(text || '');
-
-  const words =
-    plain
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean)
-      .length;
-
-  return Math.max(
-    1,
-    Math.ceil(words / 220)
-  );
-
+  return Math.max(1, Math.round((text||'').split(' ').length / 200));
 }
 
-/* ==========================================================
-   ARTICLE HTML
-========================================================== */
-
-function formatContent(text) {
-
-  if (!text) return '';
-
-  /*
-    Če članek vsebuje HTML, ga očistimo in prikažemo
-    kot bogato vsebino.
-
-    Stari članki, ki vsebujejo samo navadni tekst,
-    še vedno delujejo.
-  */
-
-  if (/<[a-z][\s\S]*>/i.test(text)) {
-
-    return sanitizeArticleHtml(text);
-
-  }
-
-  return text
-    .split('\n')
-    .filter(Boolean)
-    .map(
-      p => `<p>${esc(p)}</p>`
-    )
-    .join('');
-
-}
-
-function sanitizeArticleHtml(html) {
-
-  const template =
-    document.createElement('template');
-
-  template.innerHTML = html;
-
-  const allowedTags = new Set([
-    'P',
-    'BR',
-    'STRONG',
-    'B',
-    'EM',
-    'I',
-    'H2',
-    'H3',
-    'UL',
-    'OL',
-    'LI',
-    'BLOCKQUOTE',
-    'FIGURE',
-    'FIGCAPTION',
-    'IMG',
-    'DIV',
-    'SPAN',
-    'A',
-    'IFRAME'
-  ]);
-
-  const allowedAttributes = {
-    A: ['href', 'target', 'rel'],
-    IMG: ['src', 'alt', 'title'],
-    IFRAME: [
-      'src',
-      'title',
-      'allow',
-      'allowfullscreen',
-      'loading',
-      'referrerpolicy'
-    ]
-  };
-
-  function cleanNode(node) {
-
-    if (node.nodeType === Node.TEXT_NODE) {
-      return;
-    }
-
-    if (node.nodeType !== Node.ELEMENT_NODE) {
-
-      node.remove();
-
-      return;
-
-    }
-
-    const tag =
-      node.tagName.toUpperCase();
-
-    if (!allowedTags.has(tag)) {
-
-      const parent =
-        node.parentNode;
-
-      while (node.firstChild) {
-
-        parent.insertBefore(
-          node.firstChild,
-          node
-        );
-
-      }
-
-      node.remove();
-
-      return;
-
-    }
-
-    const allowed =
-      allowedAttributes[tag] || [];
-
-    [...node.attributes].forEach(attr => {
-
-      if (!allowed.includes(attr.name.toLowerCase())) {
-
-        node.removeAttribute(attr.name);
-
-      }
-
-    });
-
-    if (tag === 'IMG') {
-
-      const src =
-        node.getAttribute('src') || '';
-
-      if (
-        !/^https?:\/\//i.test(src) &&
-        !/^data:image\//i.test(src)
-      ) {
-
-        node.remove();
-
-        return;
-
-      }
-
-    }
-
-    if (tag === 'A') {
-
-      const href =
-        node.getAttribute('href') || '';
-
-      if (!/^https?:\/\//i.test(href)) {
-
-        node.removeAttribute('href');
-
-      } else {
-
-        node.setAttribute(
-          'target',
-          '_blank'
-        );
-
-        node.setAttribute(
-          'rel',
-          'noopener noreferrer'
-        );
-
-      }
-
-    }
-
-    if (tag === 'IFRAME') {
-
-      const src =
-        node.getAttribute('src') || '';
-
-      let allowedYoutube = false;
-
-      try {
-
-        const url =
-          new URL(src);
-
-        allowedYoutube =
-          url.hostname === 'www.youtube.com' ||
-          url.hostname === 'youtube.com' ||
-          url.hostname === 'www.youtube-nocookie.com' ||
-          url.hostname === 'youtube-nocookie.com';
-
-      } catch (e) {}
-
-      if (!allowedYoutube) {
-
-        node.remove();
-
-        return;
-
-      }
-
-    }
-
-    [...node.childNodes]
-      .forEach(cleanNode);
-
-  }
-
-  [...template.content.childNodes]
-    .forEach(cleanNode);
-
-  const wrapper =
-    document.createElement('div');
-
-  wrapper.appendChild(
-    template.content.cloneNode(true)
-  );
-
-  return wrapper.innerHTML;
-
-}
-
-/* ==========================================================
-   EDITOR
-========================================================== */
-
-function syncEditorContent() {
-
-  const editor =
-    document.getElementById(
-      'articleContentEditor'
-    );
-
-  const hidden =
-    document.getElementById(
-      'articleContent'
-    );
-
-  if (!editor || !hidden) return;
-
-  hidden.value =
-    sanitizeArticleHtml(
-      editor.innerHTML
-    );
-
-}
-
-function editorCommand(command, value = null) {
-
-  const editor =
-    document.getElementById(
-      'articleContentEditor'
-    );
-
-  if (!editor) return;
-
-  editor.focus();
-
-  document.execCommand(
-    command,
-    false,
-    value
-  );
-
-  syncEditorContent();
-
-}
-
-function insertEditorImage() {
-
-  const editor =
-    document.getElementById(
-      'articleContentEditor'
-    );
-
-  if (!editor) return;
-
-  editor.focus();
-
-  const url =
-    prompt(
-      'Vnesite URL slike:\n\nPrimer: https://moja-stran.si/slika.jpg'
-    );
-
-  if (!url) return;
-
-  if (!/^https?:\/\//i.test(url)) {
-
-    toast(
-      'URL slike mora začeti s http:// ali https://',
-      'error'
-    );
-
-    return;
-
-  }
-
-  const caption =
-    prompt(
-      'Napisu pod sliko lahko dodate opis (neobvezno):'
-    ) || '';
-
-  const figure =
-    document.createElement('figure');
-
-  const img =
-    document.createElement('img');
-
-  img.src = url;
-  img.alt = caption || 'Slika članka';
-
-  figure.appendChild(img);
-
-  if (caption.trim()) {
-
-    const figcaption =
-      document.createElement('figcaption');
-
-    figcaption.textContent =
-      caption.trim();
-
-    figure.appendChild(figcaption);
-
-  }
-
-  const paragraph =
-    document.createElement('p');
-
-  paragraph.innerHTML = '<br>';
-
-  insertNodeAtCursor(
-    figure
-  );
-
-  insertNodeAtCursor(
-    paragraph
-  );
-
-  syncEditorContent();
-
-}
-
-function getYouTubeId(urlString) {
-
-  try {
-
-    const url =
-      new URL(urlString);
-
-    const hostname =
-      url.hostname.replace(
-        /^www\./,
-        ''
-      );
-
-    if (hostname === 'youtu.be') {
-
-      return url.pathname
-        .split('/')
-        .filter(Boolean)[0] || '';
-
-    }
-
-    if (
-      hostname === 'youtube.com' ||
-      hostname === 'm.youtube.com'
-    ) {
-
-      if (url.pathname === '/watch') {
-
-        return url.searchParams.get('v') || '';
-
-      }
-
-      if (url.pathname.startsWith('/shorts/')) {
-
-        return url.pathname
-          .split('/')[2] || '';
-
-      }
-
-      if (url.pathname.startsWith('/embed/')) {
-
-        return url.pathname
-          .split('/')[2] || '';
-
-      }
-
-    }
-
-  } catch (e) {}
-
-  return '';
-
-}
-
-function insertYouTube() {
-
-  const editor =
-    document.getElementById(
-      'articleContentEditor'
-    );
-
-  if (!editor) return;
-
-  editor.focus();
-
-  const url =
-    prompt(
-      'Prilepite YouTube povezavo:\n\nPrimer:\nhttps://www.youtube.com/watch?v=XXXXXXXXXXX'
-    );
-
-  if (!url) return;
-
-  const videoId =
-    getYouTubeId(url.trim());
-
-  if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
-
-    toast(
-      'YouTube povezave ni mogoče prepoznati.',
-      'error'
-    );
-
-    return;
-
-  }
-
-  const wrapper =
-    document.createElement('div');
-
-  wrapper.className =
-    'video-embed';
-
-  const iframe =
-    document.createElement('iframe');
-
-  iframe.src =
-    `https://www.youtube.com/embed/${videoId}`;
-
-  iframe.title =
-    'YouTube video';
-
-  iframe.loading =
-    'lazy';
-
-  iframe.allow =
-    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-
-  iframe.setAttribute(
-    'allowfullscreen',
-    ''
-  );
-
-  iframe.referrerPolicy =
-    'strict-origin-when-cross-origin';
-
-  wrapper.appendChild(iframe);
-
-  const paragraph =
-    document.createElement('p');
-
-  paragraph.innerHTML =
-    '<br>';
-
-  insertNodeAtCursor(wrapper);
-
-  insertNodeAtCursor(paragraph);
-
-  syncEditorContent();
-
-}
-
-function insertNodeAtCursor(node) {
-
-  const selection =
-    window.getSelection();
-
-  if (!selection || !selection.rangeCount) {
-
-    const editor =
-      document.getElementById(
-        'articleContentEditor'
-      );
-
-    editor.appendChild(node);
-
-    return;
-
-  }
-
-  const range =
-    selection.getRangeAt(0);
-
-  range.deleteContents();
-
-  range.insertNode(node);
-
-  range.setStartAfter(node);
-
-  range.collapse(true);
-
-  selection.removeAllRanges();
-
-  selection.addRange(range);
-
-}
-
-/* ==========================================================
-   EDIT ARTICLE
-========================================================== */
-
+/* ──────────────────────────────────────────────────────────
+   ARTICLE EDITOR
+────────────────────────────────────────────────────────── */
 function openArticleEditor(id = null) {
+  if (!STATE.isAdmin) return;
 
-  renderCategories();
+  // Fill category select
+  const sel = document.getElementById('articleCategory');
+  sel.innerHTML = STATE.categories.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
 
   if (id) {
-
-    const article =
-      STATE.articles.find(
-        a => String(a.id) === String(id)
-      );
-
-    if (!article) return;
-
-    document.getElementById('editorTitle')
-      .textContent =
-      'Uredi članek';
-
-    document.getElementById('editingId')
-      .value =
-      article.id;
-
-    document.getElementById('articleTitle')
-      .value =
-      article.title || '';
-
-    document.getElementById('articleCategory')
-      .value =
-      article.category || STATE.categories[0] || '';
-
-    document.getElementById('articleAuthor')
-      .value =
-      article.author || '';
-
-    document.getElementById('articleExcerpt')
-      .value =
-      article.excerpt || '';
-
-    setEditorContent(
-      article.content || ''
-    );
-
-    document.getElementById('articleImage')
-      .value =
-      article.image || '';
-
-    document.getElementById('btnSaveArticle')
-      .textContent =
-      'Shrani spremembe';
-
+    const a = STATE.articles.find(x => x.id === id);
+    if (!a) return;
+    document.getElementById('editorTitle').textContent = 'Uredi članek';
+    document.getElementById('editingId').value = id;
+    document.getElementById('articleTitle').value = a.title;
+    document.getElementById('articleCategory').value = a.category;
+    document.getElementById('articleAuthor').value = a.author || '';
+    document.getElementById('articleExcerpt').value = a.excerpt || '';
+    document.getElementById('articleContent').value = a.content || '';
+    document.getElementById('articleImage').value = a.image || '';
+    document.getElementById('btnSaveArticle').textContent = 'Shrani spremembe';
   } else {
-
-    document.getElementById('editorTitle')
-      .textContent =
-      'Nov članek';
-
-    document.getElementById('editingId')
-      .value = '';
-
-    document.getElementById('articleTitle')
-      .value = '';
-
-    document.getElementById('articleCategory')
-      .value =
-      STATE.categories[0] || '';
-
-    document.getElementById('articleAuthor')
-      .value = '';
-
-    document.getElementById('articleExcerpt')
-      .value = '';
-
-    setEditorContent('');
-
-    document.getElementById('articleImage')
-      .value = '';
-
-    document.getElementById('btnSaveArticle')
-      .textContent =
-      'Objavi članek';
-
+    document.getElementById('editorTitle').textContent = 'Nov članek';
+    document.getElementById('editingId').value = '';
+    document.getElementById('articleTitle').value = '';
+    document.getElementById('articleAuthor').value = '';
+    document.getElementById('articleExcerpt').value = '';
+    document.getElementById('articleContent').value = '';
+    document.getElementById('articleImage').value = '';
   }
 
   openModal('editorModal');
-
 }
-
-function setEditorContent(content) {
-
-  const editor =
-    document.getElementById(
-      'articleContentEditor'
-    );
-
-  if (!editor) return;
-
-  if (
-    /<[a-z][\s\S]*>/i.test(
-      content || ''
-    )
-  ) {
-
-    editor.innerHTML =
-      sanitizeArticleHtml(
-        content
-      );
-
-  } else {
-
-    editor.innerHTML =
-      String(content || '')
-        .split('\n')
-        .filter(Boolean)
-        .map(
-          p => `<p>${esc(p)}</p>`
-        )
-        .join('');
-
-  }
-
-  syncEditorContent();
-
-}
-
-/* ==========================================================
-   SAVE ARTICLE
-========================================================== */
 
 async function saveArticle() {
+  const title = document.getElementById('articleTitle').value.trim();
+  const content = document.getElementById('articleContent').value.trim();
+  if (!title) { toast('Vnesite naslov!', 'error'); return; }
+  if (!content) { toast('Vnesite vsebino!', 'error'); return; }
 
-  syncEditorContent();
-
-  const title =
-    document.getElementById(
-      'articleTitle'
-    ).value.trim();
-
-  const content =
-    document.getElementById(
-      'articleContent'
-    ).value.trim();
-
-  if (!title) {
-
-    toast(
-      'Vnesite naslov!',
-      'error'
-    );
-
-    return;
-
-  }
-
-  if (!content) {
-
-    toast(
-      'Vnesite vsebino!',
-      'error'
-    );
-
-    return;
-
-  }
-
-  const btn =
-    document.getElementById(
-      'btnSaveArticle'
-    );
-
-  const editingId =
-    document.getElementById(
-      'editingId'
-    ).value;
-
-  const originalText =
-    editingId
-      ? 'Shrani spremembe'
-      : 'Objavi članek';
+  const btn = document.getElementById('btnSaveArticle');
+  const editingId = document.getElementById('editingId').value;
+  const originalText = editingId ? 'Shrani spremembe' : 'Objavi članek';
 
   btn.disabled = true;
-
-  btn.innerHTML = `
-    <span
-      style="
-        display:inline-block;
-        width:14px;
-        height:14px;
-        border:2px solid rgba(10,22,40,.3);
-        border-top-color:var(--navy);
-        border-radius:50%;
-        animation:spin .7s linear infinite;
-        vertical-align:middle;
-        margin-right:6px
-      "
-    ></span>
-    Shranjujem…
-  `;
-
-  const existing =
-    editingId
-      ? STATE.articles.find(
-          a => String(a.id) === String(editingId)
-        )
-      : null;
+  btn.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid rgba(10,22,40,.3);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px"></span>Shranjujem…';
 
   const article = {
-
-    id:
-      editingId
-        ? parseInt(editingId)
-        : Date.now(),
-
+    id: editingId ? parseInt(editingId) : Date.now(),
     title,
-
-    category:
-      document.getElementById(
-        'articleCategory'
-      ).value,
-
-    author:
-      document.getElementById(
-        'articleAuthor'
-      ).value.trim() ||
-      'Uredništvo',
-
-    excerpt:
-      document.getElementById(
-        'articleExcerpt'
-      ).value.trim(),
-
+    category: document.getElementById('articleCategory').value,
+    author: document.getElementById('articleAuthor').value.trim() || 'Uredništvo',
+    excerpt: document.getElementById('articleExcerpt').value.trim(),
     content,
-
-    image:
-      document.getElementById(
-        'articleImage'
-      ).value.trim(),
-
-    date:
-      editingId
-        ? (
-            existing?.date ||
-            new Date().toISOString()
-          )
-        : new Date().toISOString(),
-
-    updated:
-      new Date().toISOString()
-
+    image: document.getElementById('articleImage').value.trim(),
+    date: editingId
+      ? (STATE.articles.find(a => a.id === parseInt(editingId))?.date || new Date().toISOString())
+      : new Date().toISOString(),
+    updated: new Date().toISOString(),
   };
 
   if (editingId) {
-
-    const idx =
-      STATE.articles.findIndex(
-        a => String(a.id) === String(editingId)
-      );
-
-    if (idx !== -1) {
-
-      STATE.articles[idx] =
-        article;
-
-    } else {
-
-      STATE.articles.unshift(
-        article
-      );
-
-    }
-
+    const idx = STATE.articles.findIndex(a => a.id === parseInt(editingId));
+    if (idx !== -1) STATE.articles[idx] = article;
+    else STATE.articles.unshift(article);
   } else {
-
-    STATE.articles.unshift(
-      article
-    );
-
+    STATE.articles.unshift(article);
   }
 
   saveLocalState();
 
   let ghOk = false;
-
-  try {
-
-    ghOk =
-      await saveToGitHub();
-
-  } catch (e) {
-
-    console.error(
-      'GH save error:',
-      e
-    );
-
-  }
+  try { ghOk = await saveToGitHub(); } catch(e) { console.error('GH save error:', e); }
 
   btn.disabled = false;
+  btn.innerHTML = originalText;
 
-  btn.innerHTML =
-    originalText;
-
-  closeModal(
-    'editorModal'
-  );
-
+  closeModal('editorModal');
   renderHero();
-
   renderArticles();
-
   renderSidebar();
 
   if (ghOk) {
-
-    toast(
-      'Članek uspešno objavljen na GitHub! ✓',
-      'success'
-    );
-
+    toast('Članek uspešno objavljen na GitHub! ✓', 'success');
   } else {
-
-    toast(
-      'Shranjeno lokalno. Preveri GitHub nastavitve.',
-      'error'
-    );
-
+    toast('Shranjeno lokalno. Preveri GitHub nastavitve.', 'error');
   }
-
 }
 
-/* ==========================================================
+/* ──────────────────────────────────────────────────────────
    DELETE
-========================================================== */
-
+────────────────────────────────────────────────────────── */
 function confirmDelete(id) {
-
-  STATE.deleteTargetId =
-    id;
-
-  openModal(
-    'confirmModal'
-  );
-
-  document.getElementById(
-    'btnConfirmDelete'
-  ).onclick =
-    async () => {
-
-      STATE.articles =
-        STATE.articles.filter(
-          a => String(a.id) !== String(id)
-        );
-
-      saveLocalState();
-
-      try {
-
-        await saveToGitHub();
-
-      } catch (e) {}
-
-      closeModal(
-        'confirmModal'
-      );
-
-      renderHero();
-
-      renderArticles();
-
-      renderSidebar();
-
-      toast(
-        'Članek izbrisan.',
-        'success'
-      );
-
-    };
-
+  STATE.deleteTargetId = id;
+  openModal('confirmModal');
+  document.getElementById('btnConfirmDelete').onclick = async () => {
+    STATE.articles = STATE.articles.filter(a => a.id !== id);
+    saveLocalState();
+    try { await saveToGitHub(); } catch(e) {}
+    closeModal('confirmModal');
+    renderHero();
+    renderArticles();
+    renderSidebar();
+    toast('Članek izbrisan.', 'success');
+  };
 }
 
-/* ==========================================================
+/* ──────────────────────────────────────────────────────────
    ADMIN LOGIN
-========================================================== */
-
+────────────────────────────────────────────────────────── */
 function checkAdminLogin() {
-
-  const pw =
-    document.getElementById(
-      'adminPassword'
-    ).value;
-
-  if (
-    pw === STATE.settings.adminPass ||
-    pw === 'urednik2024'
-  ) {
-
+  const pw = document.getElementById('adminPassword').value;
+  if (pw === STATE.settings.adminPass || pw === 'urednik2024') {
     STATE.isAdmin = true;
-
-    document.body.classList.add(
-      'admin-mode'
-    );
-
-    closeModal(
-      'loginModal'
-    );
-
-    document.getElementById(
-      'adminBanner'
-    ).classList.add('visible');
-
-    document.getElementById(
-      'btnNewArticle'
-    ).style.display =
-      'inline-flex';
-
-    document.getElementById(
-      'btnSettings'
-    ).style.display =
-      'inline-block';
-
-    document.getElementById(
-      'btnAdminToggle'
-    ).textContent =
-      'Odjava';
-
-    document.getElementById(
-      'btnAdminToggle'
-    ).onclick =
-      adminLogout;
-
-    document.getElementById(
-      'adminPassword'
-    ).value = '';
-
+    closeModal('loginModal');
+    document.getElementById('adminBanner').classList.add('visible');
+    document.getElementById('btnNewArticle').style.display = 'inline-flex';
+    document.getElementById('btnSettings').style.display = 'inline-block';
+    document.getElementById('btnAdminToggle').textContent = 'Odjava';
+    document.getElementById('btnAdminToggle').onclick = adminLogout;
+    document.getElementById('adminPassword').value = '';
     renderArticles();
-
-    toast(
-      'Dobrodošli, urednik!',
-      'success'
-    );
-
+    toast('Dobrodošli, urednik!', 'success');
   } else {
-
-    toast(
-      'Napačno geslo.',
-      'error'
-    );
-
+    toast('Napačno geslo.', 'error');
   }
-
 }
 
 function adminLogout() {
-
   STATE.isAdmin = false;
-
-  document.body.classList.remove(
-    'admin-mode'
-  );
-
-  document.getElementById(
-    'adminBanner'
-  ).classList.remove(
-    'visible'
-  );
-
-  document.getElementById(
-    'btnNewArticle'
-  ).style.display =
-    'none';
-
-  document.getElementById(
-    'btnSettings'
-  ).style.display =
-    'none';
-
-  document.getElementById(
-    'btnAdminToggle'
-  ).textContent =
-    'Urednički dostop';
-
-  document.getElementById(
-    'btnAdminToggle'
-  ).onclick =
-    () => openModal('loginModal');
-
+  document.getElementById('adminBanner').classList.remove('visible');
+  document.getElementById('btnNewArticle').style.display = 'none';
+  document.getElementById('btnSettings').style.display = 'none';
+  document.getElementById('btnAdminToggle').textContent = 'Urednički dostop';
+  document.getElementById('btnAdminToggle').onclick = () => openModal('loginModal');
   renderArticles();
-
-  toast(
-    'Odjavljeni.',
-    'success'
-  );
-
+  toast('Odjavljeni.', 'success');
 }
 
-/* ==========================================================
+/* ──────────────────────────────────────────────────────────
    SETTINGS
-========================================================== */
-
+────────────────────────────────────────────────────────── */
 function openSettings() {
-
-  const s =
-    STATE.settings;
-
-  document.getElementById(
-    'ghToken'
-  ).value =
-    s.ghToken || '';
-
-  document.getElementById(
-    'ghOwner'
-  ).value =
-    s.ghOwner || '';
-
-  document.getElementById(
-    'ghRepo'
-  ).value =
-    s.ghRepo || '';
-
-  document.getElementById(
-    'ghBranch'
-  ).value =
-    s.ghBranch || 'main';
-
-  document.getElementById(
-    'ghFilePath'
-  ).value =
-    s.ghFilePath || 'articles.json';
-
-  document.getElementById(
-    'siteName'
-  ).value =
-    s.siteName || 'Vestnik';
-
-  document.getElementById(
-    'siteTagline'
-  ).value =
-    s.siteTagline ||
-    'Sodobni digitalni časopis';
-
+  const s = STATE.settings;
+  document.getElementById('ghToken').value = s.ghToken || '';
+  document.getElementById('ghOwner').value = s.ghOwner || '';
+  document.getElementById('ghRepo').value = s.ghRepo || '';
+  document.getElementById('ghBranch').value = s.ghBranch || 'main';
+  document.getElementById('ghFilePath').value = s.ghFilePath || 'articles.json';
+  document.getElementById('siteName').value = s.siteName || 'Vestnik';
+  document.getElementById('siteTagline').value = s.siteTagline || 'Sodobni digitalni časopis';
   renderRubrikaList();
-
-  openModal(
-    'settingsModal'
-  );
-
+  openModal('settingsModal');
 }
 
 function saveSettings() {
-
-  STATE.settings.ghToken =
-    document.getElementById(
-      'ghToken'
-    ).value.trim();
-
-  STATE.settings.ghOwner =
-    document.getElementById(
-      'ghOwner'
-    ).value.trim();
-
-  STATE.settings.ghRepo =
-    document.getElementById(
-      'ghRepo'
-    ).value.trim();
-
-  STATE.settings.ghBranch =
-    document.getElementById(
-      'ghBranch'
-    ).value.trim() ||
-    'main';
-
-  STATE.settings.ghFilePath =
-    document.getElementById(
-      'ghFilePath'
-    ).value.trim() ||
-    'articles.json';
-
+  STATE.settings.ghToken = document.getElementById('ghToken').value.trim();
+  STATE.settings.ghOwner = document.getElementById('ghOwner').value.trim();
+  STATE.settings.ghRepo = document.getElementById('ghRepo').value.trim();
+  STATE.settings.ghBranch = document.getElementById('ghBranch').value.trim() || 'main';
+  STATE.settings.ghFilePath = document.getElementById('ghFilePath').value.trim() || 'articles.json';
   saveLocalState();
-
-  toast(
-    'GitHub nastavitve shranjene.',
-    'success'
-  );
-
+  toast('GitHub nastavitve shranjene.', 'success');
 }
 
 function saveSiteSettings() {
-
-  STATE.settings.siteName =
-    document.getElementById(
-      'siteName'
-    ).value.trim() ||
-    'Vestnik';
-
-  STATE.settings.siteTagline =
-    document.getElementById(
-      'siteTagline'
-    ).value.trim();
-
+  STATE.settings.siteName = document.getElementById('siteName').value.trim() || 'Vestnik';
+  STATE.settings.siteTagline = document.getElementById('siteTagline').value.trim();
   saveLocalState();
-
   applyBranding();
-
-  toast(
-    'Branding posodobljen.',
-    'success'
-  );
-
+  toast('Branding posodobljen.', 'success');
 }
 
 async function testConnection() {
-
-  const {
-    ghToken,
-    ghOwner,
-    ghRepo
-  } = STATE.settings;
-
-  if (
-    !ghToken ||
-    !ghOwner ||
-    !ghRepo
-  ) {
-
-    toast(
-      'Izpolnite vse podatke.',
-      'error'
-    );
-
-    return;
-
-  }
-
+  const { ghToken, ghOwner, ghRepo } = STATE.settings;
+  if (!ghToken || !ghOwner || !ghRepo) { toast('Izpolnite vse podatke.', 'error'); return; }
   try {
-
-    const r =
-      await fetch(
-        `https://api.github.com/repos/${ghOwner}/${ghRepo}`,
-        {
-          headers: {
-            Authorization:
-              `token ${ghToken}`
-          }
-        }
-      );
-
-    if (r.ok) {
-
-      toast(
-        'Povezava z GitHub uspešna! ✓',
-        'success'
-      );
-
-    } else {
-
-      toast(
-        'Napaka: ' + r.status,
-        'error'
-      );
-
-    }
-
-  } catch (e) {
-
-    toast(
-      'Napaka pri povezavi.',
-      'error'
-    );
-
-  }
-
+    const r = await fetch(`https://api.github.com/repos/${ghOwner}/${ghRepo}`,
+      { headers: { Authorization: `token ${ghToken}` } });
+    if (r.ok) { toast('Povezava z GitHub uspešna! ✓', 'success'); }
+    else { toast('Napaka: ' + r.status, 'error'); }
+  } catch(e) { toast('Napaka pri povezavi.', 'error'); }
 }
 
-/* ==========================================================
+/* ──────────────────────────────────────────────────────────
    RUBRIKE
-========================================================== */
-
+────────────────────────────────────────────────────────── */
 function renderRubrikaList() {
-
-  const list =
-    document.getElementById(
-      'rubrikaList'
-    );
-
-  if (!list) return;
-
-  list.innerHTML =
-    STATE.categories
-      .map(
-        (c, i) => `
-          <div class="rubrika-item">
-
-            <span>
-              ${esc(c)}
-            </span>
-
-            <div class="rubrika-item-actions">
-
-              <button
-                class="btn btn-outline btn-sm"
-                onclick="deleteRubrika(${i})"
-              >
-                Odstrani
-              </button>
-
-            </div>
-
-          </div>
-        `
-      )
-      .join('');
-
+  const list = document.getElementById('rubrikaList');
+  list.innerHTML = STATE.categories.map((c, i) => `
+    <div class="rubrika-item">
+      <span>${esc(c)}</span>
+      <div class="rubrika-item-actions">
+        <button class="btn btn-outline btn-sm" onclick="deleteRubrika(${i})">Odstrani</button>
+      </div>
+    </div>`).join('');
 }
 
 function addRubrika() {
-
-  const inp =
-    document.getElementById(
-      'newRubrikaInput'
-    );
-
-  const name =
-    inp.value.trim();
-
+  const inp = document.getElementById('newRubrikaInput');
+  const name = inp.value.trim();
   if (!name) return;
-
-  if (
-    STATE.categories.includes(name)
-  ) {
-
-    toast(
-      'Rubrika že obstaja.',
-      'error'
-    );
-
-    return;
-
-  }
-
-  STATE.categories.push(
-    name
-  );
-
+  if (STATE.categories.includes(name)) { toast('Rubrika že obstaja.', 'error'); return; }
+  STATE.categories.push(name);
   saveLocalState();
-
   inp.value = '';
-
   renderRubrikaList();
-
   renderNav();
-
-  renderCategories();
-
-  renderSidebar();
-
-  toast(
-    `Rubrika "${name}" dodana.`,
-    'success'
-  );
-
+  toast(`Rubrika "${name}" dodana.`, 'success');
 }
 
 function deleteRubrika(i) {
-
-  const name =
-    STATE.categories[i];
-
-  STATE.categories.splice(
-    i,
-    1
-  );
-
+  const name = STATE.categories[i];
+  STATE.categories.splice(i, 1);
   saveLocalState();
-
   renderRubrikaList();
-
   renderNav();
-
-  renderCategories();
-
-  renderSidebar();
-
-  toast(
-    `Rubrika "${name}" odstranjena.`,
-    'success'
-  );
-
+  toast(`Rubrika "${name}" odstranjena.`, 'success');
 }
 
-/* ==========================================================
-   SEARCH / REFRESH
-========================================================== */
-
+/* ──────────────────────────────────────────────────────────
+   SEARCH
+────────────────────────────────────────────────────────── */
 async function refreshArticles() {
-
-  const btn =
-    document.getElementById(
-      'btnRefresh'
-    );
-
-  btn.textContent =
-    '↺ …';
-
+  const btn = document.getElementById('btnRefresh');
+  btn.textContent = '↺ …';
   btn.disabled = true;
-
   await loadArticles();
-
-  btn.textContent =
-    '↺ Osveži';
-
+  btn.textContent = '↺ Osveži';
   btn.disabled = false;
-
-  toast(
-    'Članki posodobljeni.',
-    'success'
-  );
-
+  toast('Članki posodobljeni.', 'success');
 }
 
 function setupSearch() {
-
   let t;
-
-  document.getElementById(
-    'searchInput'
-  ).addEventListener(
-    'input',
-    () => {
-
-      clearTimeout(t);
-
-      t =
-        setTimeout(
-          renderArticles,
-          250
-        );
-
-    }
-  );
-
+  document.getElementById('searchInput').addEventListener('input', () => {
+    clearTimeout(t);
+    t = setTimeout(renderArticles, 250);
+  });
 }
 
-/* ==========================================================
+/* ──────────────────────────────────────────────────────────
    MODAL HELPERS
-========================================================== */
-
+────────────────────────────────────────────────────────── */
 function openModal(id) {
-
-  document.getElementById(id)
-    .classList.add('open');
-
+  document.getElementById(id).classList.add('open');
+  // NE zaklepamo body overflow — scroll mora vedno delovati
 }
-
 function closeModal(id) {
-
-  document.getElementById(id)
-    .classList.remove('open');
-
+  document.getElementById(id).classList.remove('open');
 }
 
-/* ==========================================================
+/* ──────────────────────────────────────────────────────────
    TOAST
-========================================================== */
-
-function toast(
-  msg,
-  type = 'success'
-) {
-
-  const c =
-    document.getElementById(
-      'toastContainer'
-    );
-
-  const t =
-    document.createElement(
-      'div'
-    );
-
-  t.className =
-    `toast ${type}`;
-
-  t.textContent =
-    msg;
-
+────────────────────────────────────────────────────────── */
+function toast(msg, type = 'success') {
+  const c = document.getElementById('toastContainer');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
   c.appendChild(t);
-
-  requestAnimationFrame(
-    () => {
-
-      requestAnimationFrame(
-        () => {
-
-          t.classList.add(
-            'show'
-          );
-
-        }
-      );
-
-    }
-  );
-
-  setTimeout(
-    () => {
-
-      t.classList.remove(
-        'show'
-      );
-
-      setTimeout(
-        () => t.remove(),
-        300
-      );
-
-    },
-    3500
-  );
-
+  requestAnimationFrame(() => { requestAnimationFrame(() => t.classList.add('show')); });
+  setTimeout(() => {
+    t.classList.remove('show');
+    setTimeout(() => t.remove(), 300);
+  }, 3500);
 }
 
-/* ==========================================================
-   UTILITIES
-========================================================== */
-
+/* ──────────────────────────────────────────────────────────
+   UTILS
+────────────────────────────────────────────────────────── */
 function esc(str) {
-
   return String(str || '')
-    .replace(
-      /&/g,
-      '&amp;'
-    )
-    .replace(
-      /</g,
-      '&lt;'
-    )
-    .replace(
-      />/g,
-      '&gt;'
-    )
-    .replace(
-      /"/g,
-      '&quot;'
-    )
-    .replace(
-      /'/g,
-      '&#39;'
-    );
-
-}
-
-function escJs(str) {
-
-  return String(str || '')
-    .replace(
-      /\\/g,
-      '\\\\'
-    )
-    .replace(
-      /'/g,
-      "\\'"
-    )
-    .replace(
-      /\r/g,
-      '\\r'
-    )
-    .replace(
-      /\n/g,
-      '\\n'
-    );
-
-}
-
-function stripHtml(html) {
-
-  const div =
-    document.createElement(
-      'div'
-    );
-
-  div.innerHTML =
-    html || '';
-
-  return (
-    div.textContent ||
-    div.innerText ||
-    ''
-  )
-    .replace(
-      /\s+/g,
-      ' '
-    )
-    .trim();
-
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
 function formatDate(iso) {
-
   if (!iso) return '';
-
-  const date =
-    new Date(iso);
-
-  if (
-    Number.isNaN(
-      date.getTime()
-    )
-  ) {
-    return '';
-  }
-
-  return date.toLocaleDateString(
-    'sl-SI',
-    {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    }
-  );
-
+  return new Date(iso).toLocaleDateString('sl-SI', { day:'numeric', month:'long', year:'numeric' });
 }
-
-/* ==========================================================
-   ESCAPE / CLOSE EVENTS
-========================================================== */
-
-document.addEventListener(
-  'keydown',
-  event => {
-
-    if (
-      event.key === 'Escape'
-    ) {
-
-      closeModal('loginModal');
-
-      closeModal('editorModal');
-
-      closeModal('settingsModal');
-
-      closeModal('confirmModal');
-
-      closeReader();
-
-    }
-
-  }
-);
-
 </script>
-
 </body>
 </html>
